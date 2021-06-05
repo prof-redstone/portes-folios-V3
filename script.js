@@ -41,7 +41,7 @@ var autoTypewebDeveloper = new AutoType({
     parent: document.getElementById("webDeveloper"),
     writeSpeed: 150,
     opacityTransition: 0.2,
-    className: ["rotHover", "rotEvent"]
+    className: ["rotHover", "rotEvent", "colorRed"]
 }).Write("web developer").Start()
 
 //animation hover des lettres
@@ -51,7 +51,7 @@ $(".rotHover").bind("webkitAnimationEnd mozAnimationEnd animationEnd", function(
 $(".rotHover").hover(function() {
     $(this).addClass("rotationAnimation");
 })
-//caractere random qui toune tous les 4s
+//characters random qui toune tous les 4s
 let intervalAnimLetter = setInterval(() => {
     var el = document.getElementsByClassName('rotEvent');
     var nb = nb_random(0, el.length - 1)
@@ -67,4 +67,43 @@ let intervalAnimLetter = setInterval(() => {
 
 function nb_random(min, max) { //fonction générant un nombre aléatoire entier min et max inclue [min;max]
     return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+var scrollPostion = 0 //full-page-scroll.js change this valu on scroll
+var HScrollProject = 0
+function ScroollPostion(x) {
+    if (x != scrollPostion) {
+        scrollPostion = x
+
+        if (scrollPostion == 0) {
+            NeuronWebCanvas.StartNeuroneWeb()
+            grassSimulationCanvas.StopGrassSimulation()
+        } else {
+            NeuronWebCanvas.StopNeuronWeb()
+        }
+        if (scrollPostion == 100) {
+            if (HScrollProject == 0) {
+                StartP2p1()
+                grassSimulationCanvas.StartGrassSimulation()
+            }
+        }
+    }
+}
+
+window.onscroll = function() { //pour reset la scroll bar sinon bug
+    window.scroll(0, 0);
+}
+new fullScroll({ //scroll magique avec puce
+    mainElement: "main",
+    sections: 'section',
+    displayDots: true,
+    dotsPosition: "right",
+    animateTime: 0.5,
+    animateFunction: "ease",
+});
+
+
+//Page 2 part 1
+function StartP2p1(){
+    
 }

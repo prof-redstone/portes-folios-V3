@@ -11,7 +11,7 @@ function grassSimulation() {
     var brand = []
     let naturalWindArr = []
     let NWindParam = {
-        windProb: 60
+        windProb: 50
     }
 
     function UpdateDelteTime() {
@@ -29,7 +29,7 @@ function grassSimulation() {
             this.size = size || 7;
             this.hue = nb_random(170, 200) / 100;
             this.sat = nb_random(100, 300) / 10
-            this.darkness = nb_random(420, 490) / 10
+            this.darkness = nb_random(450, 520) / 10
             this.color;
             this.curve = nb_random(-100, 100) / 1000 //original shape
             this.nbPiece = 6;
@@ -119,7 +119,7 @@ function grassSimulation() {
 
     function NaturalWindUpdate() {
         if (nb_random(0, NWindParam.windProb) == 1) {
-            naturalWindArr.push(new NaturalWind(0, 1, nb_random(1000, 3000) / 100))
+            naturalWindArr.push(new NaturalWind(0, 1, nb_random(2000, 4000) / 100))
         }
         for (let i = 0; i < naturalWindArr.length; i++) {
             naturalWindArr[i].Update()
@@ -144,7 +144,7 @@ function grassSimulation() {
 
             for (let i = 0; i < brand.length; i++) {
                 if ((this.x <= brand[i].x + 100 && brand[i].x - 100 <= this.x)) {
-                    brand[i].wind = brand[i].windRecistance * 2
+                    brand[i].wind = brand[i].windRecistance * this.speed/15
                 }
             }
         }

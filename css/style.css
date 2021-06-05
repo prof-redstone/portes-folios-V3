@@ -1,0 +1,131 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Helvetica, sans-serif;
+    background-color: #1d1d1d;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+h1,h2,h3,h4,h5,h6,p,span {
+    margin: 0;
+    padding: 0;
+}
+
+button{
+    font-size: 100%;
+    font-family: inherit;
+    border: none;
+    padding: 0;
+    width: auto;
+    background: transparent;
+    outline: none;
+    line-height: normal;
+    -webkit-appearance: none;
+    outline: none;
+    user-select: none;
+}
+img {
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+  }
+
+div {
+    box-sizing: border-box;
+}
+
+section {
+    height: 100vh;
+    padding: 0 0 0 0;
+    display: flex;
+    
+}
+#section-home{
+    align-items: center;
+}
+
+
+
+.grand-text{
+    font-size: 4.5em;
+}
+
+@media only screen and (max-width: 1000px) {
+    .grand-text {
+        font-size: 3em;
+    }
+}
+
+@media only screen and (max-width: 700px) {
+    .grand-text {
+        font-size: 2em;
+    }
+}
+@media only screen and (max-width: 400px) {
+    .grand-text {
+        font-size: 1.6em;
+    }
+}
+
+.grand-text-S2{
+    font-size: 4em;
+}
+@media only screen and (max-width: 1000px) {
+    .grand-text-S2 {
+        font-size: 2.5em;
+    }
+}
+@media only screen and (max-width: 700px) {
+    .grand-text-S2 {
+        font-size: 1.5em;
+    }
+}
+@media only screen and (max-width: 400px) {
+    .grand-text-S2 {
+        font-size: 1.2em;
+    }
+}
+
+.BGsection2{
+    background-color: #2aacb8;
+}
+
+#pageContainer{
+    display: flex;
+    flex-direction: row;
+    overflow-x: hidden;
+}
+
+.arrows{
+    position: absolute;
+    
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    align-items: flex-end;
+    padding-bottom: clamp(5px, 6vw, 50px);
+}
+
+
+.arrowImg{
+    width: clamp(60px, 10vw, 85px);
+    filter: grayscale(1) invert(0.8);
+    padding: 20px;
+    box-sizing: content-box;
+    border-width: 5px;
+    border-style: solid;
+    border-radius: 50%;
+    border-color: transparent;
+    transition-duration: 0.3s;
+}
+
+.arrowImg:hover{
+    border-color: rgb(0, 0, 0);
+    /*padding: 10px;
+    width: clamp(50px, 9vw, 75px);*/
+    transform: scale(0.9) ;
+}
