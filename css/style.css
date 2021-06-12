@@ -7,12 +7,19 @@ body {
     overflow-y: hidden;
 }
 
-h1,h2,h3,h4,h5,h6,p,span {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span {
     margin: 0;
     padding: 0;
 }
 
-button{
+button {
     font-size: 100%;
     font-family: inherit;
     border: none;
@@ -25,13 +32,14 @@ button{
     outline: none;
     user-select: none;
 }
+
 img {
     -webkit-user-select: none;
     -khtml-user-select: none;
     -moz-user-select: none;
     -o-user-select: none;
     user-select: none;
-  }
+}
 
 div {
     box-sizing: border-box;
@@ -41,15 +49,16 @@ section {
     height: 100vh;
     padding: 0 0 0 0;
     display: flex;
-    
+
 }
-#section-home{
+
+#section-home {
     align-items: center;
 }
 
 
 
-.grand-text{
+.grand-text {
     font-size: 4.5em;
 }
 
@@ -64,44 +73,49 @@ section {
         font-size: 2em;
     }
 }
+
 @media only screen and (max-width: 400px) {
     .grand-text {
         font-size: 1.6em;
     }
 }
 
-.grand-text-S2{
+.grand-text-S2 {
     font-size: 4em;
 }
+
 @media only screen and (max-width: 1000px) {
     .grand-text-S2 {
         font-size: 2.5em;
     }
 }
+
 @media only screen and (max-width: 700px) {
     .grand-text-S2 {
         font-size: 1.5em;
     }
 }
+
 @media only screen and (max-width: 400px) {
     .grand-text-S2 {
         font-size: 1.2em;
     }
 }
 
-.BGsection2{
+.BGsection2 {
     background-color: #2aacb8;
 }
 
-#pageContainer{
+#pageContainer {
     display: flex;
     flex-direction: row;
-    overflow-x: hidden;
+    /*overflow-x: hidden;*/
+    transition: all 0.5s ease 0s;
 }
 
-.arrows{
+.arrows {
     position: absolute;
-    
+
     display: flex;
     width: 100vw;
     height: 100vh;
@@ -111,7 +125,7 @@ section {
 }
 
 
-.arrowImg{
+.arrowImg {
     width: clamp(60px, 10vw, 85px);
     filter: grayscale(1) invert(0.8);
     padding: 20px;
@@ -123,9 +137,24 @@ section {
     transition-duration: 0.3s;
 }
 
-.arrowImg:hover{
+.arrowImg:hover {
     border-color: rgb(0, 0, 0);
     /*padding: 10px;
     width: clamp(50px, 9vw, 75px);*/
-    transform: scale(0.9) ;
+    transform: scale(0.9);
+}
+
+
+#text-page2-1 {
+    background-image: linear-gradient(transparent calc(95% - 5px), #000cc4 5px);
+    background-size: 100%;
+    background-size: 0%;
+    background-repeat: no-repeat;
+    display: inline;
+    text-align: center;
+    transition: 0.5s ease;
+}
+
+#text-page2-1:hover {
+    background-size: 100%;
 }

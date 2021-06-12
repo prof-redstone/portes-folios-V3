@@ -37,12 +37,12 @@
             <div class="arrows">
                 <div style="width: clamp(300px,50vw,600px); display: flex; align-items: center; justify-content: space-between;">
                     <div class="arrow" style="z-index: 2;">
-                        <button>
+                        <button id="P2btnLeft">
                             <img src="img/leftArrow.png" alt="arrow" class="arrowImg">
                         </button>
                     </div>
                     <div class="arrow" style="z-index: 2;">
-                        <button>
+                        <button  id="P2btnRight">
                             <img src="img/rightArrow.png" alt="arrow" class="arrowImg" >
                         </button>
                     </div>
@@ -50,10 +50,10 @@
             </div>
             <div id="pageContainer">
                 <div id="page1">
-                    <div class="grand-text-S2" style="position: absolute; color: #dfdfdf; z-index: 1; display: flex; width: 100vw; justify-content: center;">
-                        <div style="width: 100vw; height: 100vh; display: flex; justify-content: center; align-items: center;">
-                            <div style="max-width: 80vw;">
-                                <h1 id="text-page2-1" style="text-align: center;">my creations in canvas</h1>
+                    <div class="grand-text-S2" style="position: absolute; color: #dfdfdf; z-index: 1; display: flex; width: 100vw;  align-items: center;">
+                        <div style="width: 100vw; height: 100vh; display: flex; justify-content: center;">
+                            <div style="max-width: 80vw; margin-top: 40vh;">
+                                <h1 id="text-page2-1" style="text-align: center;">my creations on canvas</h1>
                             </div>
                                 
                         </div>
@@ -64,9 +64,27 @@
                     </div>
                 </div>
                 
-                <div id="page2">
-                    <div style="height: 100vh; width: 100vw; background-color: pink;">
+                <div id="page2" style="width: 100vw;">
+                    <div>
+                        <canvas id="GameOfLife" style="z-index: 0; position: absolute;"></canvas>
+                    </div>
+                </div>
 
+                <div id="page3" style="width: 100vw;">
+                    <div>
+                        <canvas id="ClockBackground" style="z-index: 0; position: absolute;"></canvas>
+                    </div>
+                </div>
+
+                <div id="page4" style="width: 100vw;">
+                    <div>
+                        <canvas id="Matrix" style="z-index: 0; position: absolute;"></canvas>
+                    </div>
+                </div>
+
+                <div id="page5" style="width: 100vw;">
+                    <div>
+                        <canvas id="MagicWand" style="z-index: 0; position: absolute;"></canvas>
                     </div>
                 </div>
             </div>
@@ -85,5 +103,9 @@
 <script src="script.js"></script>
 <script src="canvas script/neuronWeb.js"></script>
 <script src="canvas script/grassSimulation.js"></script>
+<script src="canvas script/GameOfLife.js"></script>
+<script src="canvas script/ClockBackground.js"></script>
+<script src="canvas script/matrix.js"></script>
+<script src="canvas script/MagicWand.js"></script>
 
 </html>

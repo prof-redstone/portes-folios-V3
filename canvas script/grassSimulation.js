@@ -95,10 +95,7 @@ function grassSimulation() {
 
 
         clearInterval(Interval)
-        Interval = setInterval(() => {
-            loop()
-        }, 30)
-        //requestAnimationFrame(loop)
+        loop()//juste do 1 loop, need to start after
 
     }
 
@@ -233,4 +230,5 @@ let grassSimulationCanvas = new grassSimulation()
 
 window.addEventListener("resize", () => {
     grassSimulationCanvas.setup()
+    grassSimulationCanvas.StartGrassSimulation()
 });

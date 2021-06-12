@@ -70,7 +70,6 @@ function nb_random(min, max) { //fonction générant un nombre aléatoire entier
 }
 
 var scrollPostion = 0 //full-page-scroll.js change this valu on scroll
-var HScrollProject = 0
 function ScroollPostion(x) {
     if (x != scrollPostion) {
         scrollPostion = x
@@ -82,10 +81,8 @@ function ScroollPostion(x) {
             NeuronWebCanvas.StopNeuronWeb()
         }
         if (scrollPostion == 100) {
-            if (HScrollProject == 0) {
-                StartP2p1()
-                grassSimulationCanvas.StartGrassSimulation()
-            }
+            UpdateScrollP2()
+            
         }
     }
 }
@@ -103,7 +100,52 @@ new fullScroll({ //scroll magique avec puce
 });
 
 
+
 //Page 2 part 1
-function StartP2p1(){
+var HScrollProject = 0
+var HScrollProjectMax = 4
+function UpdateScrollP2(){
     
+    if (HScrollProject == 0) {
+        grassSimulationCanvas.StartGrassSimulation()
+    }else{
+        grassSimulationCanvas.StopGrassSimulation()
+    }
+
+    if (HScrollProject == 1) {
+        GameOfLifeCanvas.Start()
+    }else{
+        GameOfLifeCanvas.Stop()
+    }
+
+    if (HScrollProject == 2) {
+        ClockBackgroundCanvas.Start()
+    }else{
+        ClockBackgroundCanvas.Stop()
+    }
+
+    if (HScrollProject == 3) {
+        matrixCanvas.Start()
+    }else{
+        matrixCanvas.Stop()
+    }
+
+    if (HScrollProject == 4) {
+        magicWandCanvas.Start()
+    }else{
+        magicWandCanvas.Stop()
+    }
+
+    document.getElementById('pageContainer').style.transform = ("translateX(-"+HScrollProject*100+"vw)")
 }
+
+let P2BtnRight = document.getElementById("P2btnRight")
+P2BtnRight.addEventListener("click", ()=>{
+    HScrollProject = (HScrollProject+1 > HScrollProjectMax) ? 0 : HScrollProject+1
+    UpdateScrollP2()
+})
+let P2BtnLeft = document.getElementById("P2btnLeft")
+P2BtnLeft.addEventListener("click", ()=>{
+    HScrollProject = (HScrollProject-1 < 0) ? HScrollProjectMax : HScrollProject-1
+    UpdateScrollP2()
+})
