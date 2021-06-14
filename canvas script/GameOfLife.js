@@ -50,7 +50,6 @@ function GameOfLife() {
 
         InitGrideCells()
 
-        clearInterval(IntervalTime)
         draw()
         //IntervalTime = setInterval(draw, 100);
     }
@@ -161,5 +160,4 @@ let GameOfLifeCanvas = new GameOfLife()
 
 window.addEventListener("resize", () => {
     GameOfLifeCanvas.setup()
-    GameOfLifeCanvas.Start()
 });

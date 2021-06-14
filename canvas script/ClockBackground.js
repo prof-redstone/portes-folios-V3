@@ -38,7 +38,6 @@ function ClockBackground() {
         Ycenter = canvas.height / 2;
         Xcenter = canvas.width / 2;
 
-        clearInterval(IntervalTime)
         loop()
     }
 
@@ -200,5 +199,4 @@ let ClockBackgroundCanvas = new ClockBackground()
 
 window.addEventListener("resize", () => {
     ClockBackgroundCanvas.setup()
-    ClockBackgroundCanvas.Start()
 });

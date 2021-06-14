@@ -1,0 +1,12 @@
+body{
+    background: linear-gradient(180deg, rgb(94, 172, 236) 24%, rgb(52, 119, 187) 86%);
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+canvas{
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+}

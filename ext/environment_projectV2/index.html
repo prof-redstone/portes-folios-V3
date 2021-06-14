@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+
+<!--Tous droits reservés pour utiliser ce jeux il vous faut l'accord de Tom Demagny Jean-->
+<!--source de l'image de fond https://i.redd.it/gc74drvhw5h41.png et https://www.reddit.com/r/PixelArt/comments/f4gptk/forested_frontier_from_october_2019/-->
+
+<html>
+<head>
+	<title>the environment game</title>
+	<meta charset="utf-8">
+	<!--link rel="stylesheet" type="text/css" href="ressources/styleFont.css">-->
+	<!--<link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/minecraftia" type="text/css"/>-->
+	<link href="https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap" rel="stylesheet">
+	<link rel="icon" href="/../img/ico1.png" id="light-scheme-icon">
+</head>
+<body>
+<!--Coucou c'est moi-->
+	<a class="info0" href="http://tom-demagny.000webhostapp.com/ext/environment_project/info.html">
+		<div class="info1">
+			<h1 class="info2">...</h1>
+		</div>
+	</a>
+	
+	<button class="btnSound" onclick="buttonSound()">
+		<div class="sound">
+			<img src="ressources/soundOn.png" id="imgSound">
+		</div>
+	</button>
+	<button class="btnMusic" onclick="buttonMusic()">
+		<div class="music">
+			<img src="ressources/musicOff.png" id="imgMusic">
+		</div>
+	</button>
+	<div id="container">
+		
+		<canvas id="environmentGame" width="1200" height="1000">Your browser is not compatible sorry !!</canvas>
+		<div id="divScore1">
+			<div id="divScore2">
+				<!--<h1 class="score">SCORE&nbsp;:</h1>-->
+				<!--<h1 class="score" id="Score">0</h1>-->
+			</div>
+		</div>
+	</div>
+
+</body>
+
+<script>
+	document.querySelector('[style*="text-align: right;position: fixed;z-index:9999999"]').style.visibility= "hidden";
+</script>
+
+</html>
+
+
+
+<style type="text/css">
+	body{
+		margin: 0px;
+		padding: 0px;
+	}
+
+	#container{
+  		position: absolute;
+		margin-left: auto;
+		margin-right: auto;
+		width: calc(100vh * 1.2);
+  		height: 100vh;
+  		position: relative;
+	}
+
+	#environmentGame{
+		position: absolute;
+		min-height: 100vh;
+		max-height: 100vh;
+	}
+
+	#divScore1{
+		height: 50px;
+		position: absolute;
+		right: 0px;
+		z-index: 1;
+	}
+
+	#divScore2{
+		width: auto;
+	}
+	.info0{
+		text-decoration: none;
+    	color: gray;
+	}
+	.info1{
+		position: fixed;
+		width: 40px;
+		height: 30px;
+		z-index: 2;
+		background-color: rgba(200, 200, 200, 0.5);
+		border-radius: 10px;
+	}
+	.info2{
+		line-height: 50%;
+		margin-top: 0px;
+		text-align: center;
+	}
+	.btnSound{
+		position: fixed;
+		margin-top: 70px;
+		z-index: 3;
+		background-color: Transparent;
+		border: none;
+	}
+	#imgSound{
+		width: 32px;
+		image-rendering: optimizeSpeed;             /* STOP SMOOTHING, GIVE ME SPEED  */
+		image-rendering: -moz-crisp-edges;          /* Firefox                        */
+		image-rendering: -o-crisp-edges;            /* Opera                          */
+		image-rendering: -webkit-optimize-contrast; /* Chrome (and eventually Safari) */
+		image-rendering: pixelated; /* Chrome */
+		image-rendering: optimize-contrast;         /* CSS3 Proposed                  */
+		-ms-interpolation-mode: nearest-neighbor;   /* IE8+                           */
+	}
+	.btnMusic{
+		position: fixed;
+		margin-top: 40px;
+		z-index: 3;
+		background-color: Transparent;
+		border: none;
+	}
+	#imgMusic{
+		width: 32px;
+		image-rendering: optimizeSpeed;             /* STOP SMOOTHING, GIVE ME SPEED  */
+		image-rendering: -moz-crisp-edges;          /* Firefox                        */
+		image-rendering: -o-crisp-edges;            /* Opera                          */
+		image-rendering: -webkit-optimize-contrast; /* Chrome (and eventually Safari) */
+		image-rendering: pixelated; /* Chrome */
+		image-rendering: optimize-contrast;         /* CSS3 Proposed                  */
+		-ms-interpolation-mode: nearest-neighbor;   /* IE8+                           */
+	}
+</style>
+<script type="text/javascript" src="chargementIMG.js"></script>
+<script type="text/javascript" src="game.js"></script>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>jeu-1_V2</title>
+		<meta charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
+        <link rel="icon" href="/../img/ico1.png" id="light-scheme-icon">
+	</head>
+	<body>
+        
+        <div style="flex-direction: row; display: flex;">
+            <div id="ressourceArticleN1" class="canvas">
+                <canvas id="jeuDesPommes" width="400" height="400"></canvas>
+            </div>
+            <div id="textArticleN2-1" class="textArticle" style="width: 354px;"> 
+                <div class="div_score">
+                    <h1 id="scoreJeuDesPommes" style="margin-left: 20px;">24</h1>
+                </div>
+
+                <div class="div_regles">
+                    <p id="regles">Les règles sont simples, récolter un maximum de carrés verts sans toucher les carrés rouges, les carrés rouges apparaissent après avoir récolté un carré vert.</p>
+                    <p style="margin-top:5px;">Controles : Utiliser les &uarr; &darr; &larr; &rarr; ou ZQSD pour vous déplacer et 0 ou A pour redémarer une partie.</p>
+                </div>
+                <div class="button_size" style="margin-top:5px;"> 
+                    <p>choisissez la taille de la grille :</p>
+                    <button class="buttonPommes" id="button_petite_taille" onclick="size_button(0)">petite taille</button>
+                    <button class="buttonPommes" id="button_moyen_taille" onclick="size_button(1)">moyen taille</button>
+                    <button class="buttonPommes" id="button_grande_taille" onclick="size_button(2)">grande taille</button>
+                    <button class="buttonPommes" id="button_demon" onclick="size_button(3)">démon</button>
+                    <style>
+                        body{
+                            font-family: 'Roboto Condensed', sans-serif;
+                            background-color: rgb(220, 220, 220);
+                        }
+                        
+                        button.buttonPommes{
+                            background-color: #008CBA; /* Green */
+                            border: none;
+                            color: white;
+                            padding: 15px 32px;
+                            text-align: center;
+                            text-decoration: none;
+                            display: inline-block;
+                            font-size: 16px;
+                            width: 152px;
+                            margin-left: 5px;
+                            margin-top: 5px;
+                        }
+                        button.buttonPommes:hover {
+                            background-color: #4CAF50;
+                        }
+                        button.buttonPommes:active {
+                            background-color: #3f9e42;
+                        }
+                        p{
+                            font-family: 'Roboto Condensed', sans-serif;
+                            font-size: 19px;
+                            margin-top: 0px;
+                            margin-bottom: 0px;
+                            margin-left: 5px;
+                        }
+                    </style>
+                </div>
+            </div>
+        </div>
+
+        
+        <script src="js/script.js"></script>
+        
+	</body>
+    
+</html>

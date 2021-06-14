@@ -229,5 +229,4 @@ let magicWandCanvas = new MagicWand()
 
 window.addEventListener("resize", () => {
     magicWandCanvas.setup()
-    magicWandCanvas.Start()
 });

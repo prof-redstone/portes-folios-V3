@@ -106,35 +106,42 @@ var HScrollProject = 0
 var HScrollProjectMax = 4
 function UpdateScrollP2(){
     
-    if (HScrollProject == 0) {
-        grassSimulationCanvas.StartGrassSimulation()
-    }else{
-        grassSimulationCanvas.StopGrassSimulation()
+    try {
+        if (HScrollProject == 0) {
+            grassSimulationCanvas.StartGrassSimulation()
+        }else{
+            grassSimulationCanvas.StopGrassSimulation()
+        }
+    
+        if (HScrollProject == 1) {
+            GameOfLifeCanvas.Start()
+        }else{
+            GameOfLifeCanvas.Stop()
+        }
+    
+        if (HScrollProject == 2) {
+            ClockBackgroundCanvas.Start()
+        }else{
+            ClockBackgroundCanvas.Stop()
+        }
+    
+        if (HScrollProject == 3) {
+            matrixCanvas.Start()
+        }else{
+            matrixCanvas.Stop()
+        }
+    
+        if (HScrollProject == 4) {
+            magicWandCanvas.Start()
+        }else{
+            magicWandCanvas.Stop()
+        }
+
+    } catch (error) {
+        console.error(error)
     }
 
-    if (HScrollProject == 1) {
-        GameOfLifeCanvas.Start()
-    }else{
-        GameOfLifeCanvas.Stop()
-    }
-
-    if (HScrollProject == 2) {
-        ClockBackgroundCanvas.Start()
-    }else{
-        ClockBackgroundCanvas.Stop()
-    }
-
-    if (HScrollProject == 3) {
-        matrixCanvas.Start()
-    }else{
-        matrixCanvas.Stop()
-    }
-
-    if (HScrollProject == 4) {
-        magicWandCanvas.Start()
-    }else{
-        magicWandCanvas.Stop()
-    }
+    
 
     document.getElementById('pageContainer').style.transform = ("translateX(-"+HScrollProject*100+"vw)")
 }

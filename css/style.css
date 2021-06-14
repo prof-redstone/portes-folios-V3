@@ -121,7 +121,7 @@ section {
     height: 100vh;
     justify-content: center;
     align-items: flex-end;
-    padding-bottom: clamp(5px, 6vw, 50px);
+    padding-bottom: clamp(5px, 3vw, 40px);
 }
 
 
@@ -144,7 +144,7 @@ section {
     transform: scale(0.9);
 }
 
-
+/*
 #text-page2-1 {
     background-image: linear-gradient(transparent calc(95% - 5px), #000cc4 5px);
     background-size: 100%;
@@ -157,4 +157,82 @@ section {
 
 #text-page2-1:hover {
     background-size: 100%;
+}
+*/
+
+/*
+.rainbowColor:hover{
+    background: #FFF;
+    background-image: linear-gradient( to top, #FFF, rgba(222,168,248,1) 0%, rgba(168,222,258,1) 21.9%, rgba(189,250,205,1) 35.6%, rgba(243,250,189,1) 53.9%, rgba(250,227,189,1) 66.8%, rgba(248,172,171,1) 95%, rgba(254,170,212,1) 99.9% );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 100% 1600%;
+    animation: BackgroundMove 6s ease infinite;
+}
+
+@keyframes BackgroundMove {
+    0%{background-position:50% -50%}
+    50%{background-position:50% 100%}
+    100%{background-position:50% -50%}
+}*/
+
+.rainbowColor{
+    position: relative;
+}
+
+.rainbowColor:before{
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    border-radius: 2px;
+    transition: all 0.3s ease-in-out;
+    background: rgb(89, 180, 53);
+    width: 100%;
+    height: 0%;
+}
+
+.rainbowColor:hover:before{
+    height: 5%;
+}
+
+@keyframes BackgroundMove {
+    0%{background-position:50% -50%}
+    50%{background-position:50% 100%}
+    100%{background-position:50% -50%}
+}
+
+.glitchEffect{
+    font-size: 0.5em;
+}
+
+.ULcollection{
+    list-style: none;
+    line-height: 0.6em;
+    margin: 0;
+    padding: 20px;
+    border-radius: 5px;
+    background-color: rgba(17, 17, 17, 0.76);
+}
+
+.glitchEffect{
+    position: relative;
+    text-decoration: none;
+    color: #dfdfdf;
+}
+
+.glitchEffect:before{
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: -2px;
+    border-radius: 2px;
+    transition: all 0.3s ease-in-out;
+    background: #c848cf;
+    width: 0%;
+    height: 10%;
+}
+
+.glitchEffect:hover:before{
+    width: calc(100% + 4px);
 }

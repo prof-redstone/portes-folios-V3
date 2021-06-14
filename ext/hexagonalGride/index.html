@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <title>Hexagonal gride</title>
+    <link rel="icon" href="/../img/ico1.png" id="light-scheme-icon">
+</head>
+<body>
+    <div style="">
+        <canvas id="canvas" class="canvas" width="2000" height="2000"></canvas>
+        <div style="background-color: #AAA; margin-left: 10px; display: inline-block; padding-right: 20px; border-radius: 5px;">
+            <div class="slidecontainer param">
+                <p>SPEED : +</p>
+                <input type="range" min="1" max="10" value="3" class="slider" id="speedSlider">
+                <p>-</p>
+                <button type="button" id="1frame">1 FRAME</button>
+            </div>
+            <div class="param">
+                <p>LONGUEUR : </p>
+                <input type="text" id="long" name="long" required size="1" value="100">
+            </div>
+            <div class="param">
+                <p>LARGEUR : </p>
+                <input type="text" id="larg" name="larg" required size="1" value="100">
+            </div>
+            <div class="param">
+                <p>SIZE : </p>
+                <input type="text" id="size" name="size" required size="1" value="5">
+            </div>
+        </div>
+    </div>
+    
+</body>
+<script src="hexagonalGride.js"></script>
+<script src="GameOfLifeHexagonal.js"></script>
+</html>

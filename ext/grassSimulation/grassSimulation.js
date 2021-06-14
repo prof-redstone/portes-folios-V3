@@ -226,6 +226,7 @@ function grassSimulation() {
 }
 
 let grassSimulationCanvas = new grassSimulation()
+grassSimulationCanvas.StartGrassSimulation()
 
 window.addEventListener("resize", () => {
     grassSimulationCanvas.setup()

@@ -208,7 +208,12 @@
 			var animateFunction = this.defaults.animateFunction;
 			var position = this.defaults.currentPosition * 100;
 			
-			ScroollPostion(position)
+			//this line is add to send scroll position
+			try {
+				ScroollPostion(position)
+			} catch (error) {
+				console.log(error)
+			}
 
 			this.defaults.container.style.webkitTransform = 'translateY(-' + position + 'vh)'; //modifying % to vh
 			this.defaults.container.style.mozTransform = 'translateY(-' + position + 'vh)';

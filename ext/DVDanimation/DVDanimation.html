@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>DVDanimation full sceen</title>
+		<meta charset="utf-8">
+        <link rel="icon" href="/../img/ico1.png" id="light-scheme-icon">
+    </head>
+    
+	<body>
+        <canvas id="DVDanimation" data-full_screen="True" width="500" height="300">
+    </body>
+    <style>
+        body{
+			margin: 0px;
+			background-color: #000000;
+		}
+		#DVDanimation{
+			position: absolute;
+		}
+    </style>
+	
+	<script src="DVDanimation.js"></script>
+	<script>
+		document.querySelector('[style*="text-align: right;position: fixed;z-index:9999999"]').style.visibility= "hidden";
+	</script>
+    
+</html>

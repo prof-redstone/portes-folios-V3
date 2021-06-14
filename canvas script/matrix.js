@@ -15,13 +15,13 @@ function matrix() {
         canvas = document.getElementById("Matrix");
         ctx = canvas.getContext("2d");
 
-            canvas.width = innerWidth - (innerWidth % symboleSize);
-            canvas.height = innerHeight - (innerHeight % symboleSize);
-            canvas.style.height = "100vh";
-            canvas.style.width = "100vw";
+        canvas.width = innerWidth - (innerWidth % symboleSize);
+        canvas.height = innerHeight - (innerHeight % symboleSize);
+        canvas.style.height = "100vh";
+        canvas.style.width = "100vw";
 
-            mode = "every";
-        
+        mode = "every";
+
 
         ctx.fillStyle = "#000";
         ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -29,7 +29,7 @@ function matrix() {
         ctx.font = "20px Georgia";
         table = new Table();
         table.generateStreams();
-        
+
     }
 
     this.Stop = function() {
@@ -246,5 +246,4 @@ let matrixCanvas = new matrix()
 
 window.addEventListener("resize", () => {
     matrixCanvas.setup()
-    matrixCanvas.Start()
 });
