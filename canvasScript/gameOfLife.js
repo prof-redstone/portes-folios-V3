@@ -19,7 +19,7 @@ function GameOfLife() {
         ctx = canvas.getContext("2d");
 
         ctx.imageSmoothingEnabled = false;
-        body = document.getElementsByTagName('body')[0];
+        body = document.getElementsByTagName('html')[0];
         canvas.height = body.clientHeight;
         canvas.width = body.clientWidth;
 

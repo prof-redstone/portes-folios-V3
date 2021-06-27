@@ -30,7 +30,7 @@ function MagicWand() {
         ctx.imageSmoothingEnabled = false;
 
         //console.log(innerWidth - (innerWidth % symboleSize));
-        body = document.getElementsByTagName('body')[0];
+        body = document.getElementsByTagName('html')[0];
         canvas.height = body.clientHeight;
         canvas.width = body.clientWidth;
 
