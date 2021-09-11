@@ -9,12 +9,22 @@
     <link rel="stylesheet" href="css/text-anim.css">
     <link rel="stylesheet" href="fullPage.js/full-page-scroll.css">
     <link rel="icon" href="img/ico.png" id="light-scheme-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,500;0,600;0,700;1,800&display=swap" rel="stylesheet">
     <title>PF Tom Demagny</title>
 </head>
 
 <body>
     <div id="main" class="scroll-container" style="overflow: hidden;">
         <section id="section-home">
+            <!-- <div id="contact-menu" >
+                <button onclick="document.getElementById('contact-menu').style.left = '0'">
+                    <img src="img/more.png" alt="" width="40px" style="filter: invert(1); margin-left: 5px;">
+                </button>
+                <div style="color: #FFF; display: inline-flex;" id="show-contact-menu">
+                    <div class="contact-link">instagram</div>
+                    <div class="contact-link">discord</div>
+                </div>
+            </div> -->
             <div class="grand-text" style="z-index: 1; padding: 0 20px; color: #dfdfdf; padding-left: 1.5em;">
                 <div>
                     <h1 id="hello-text" style="display: inline;"><span class="rotHover rotEvent">H</span><span class="rotHover rotEvent">i</span> <span class="rotHover rotEvent">!</span></h1>
@@ -42,8 +52,8 @@
                         </button>
                     </div>
                     <div class="arrow" style="z-index: 2;">
-                        <button  id="P2btnRight">
-                            <img src="img/rightArrow.png" alt="arrow" class="arrowImg" >
+                        <button id="P2btnRight">
+                            <img src="img/rightArrow.png" alt="arrow" class="arrowImg">
                         </button>
                     </div>
                 </div>
@@ -55,7 +65,7 @@
                             <div style="max-width: 80vw; margin-top: 40vh;">
                                 <h1 id="text-page2-1" class="rainbowColor" style="text-align: center;">creations with JS canvas</h1>
                             </div>
-                                
+
                         </div>
                     </div>
                     <div>
@@ -63,7 +73,7 @@
                         <div style="width: 100vw; height: 100vh; background: linear-gradient(180deg, rgb(94, 172, 236) 24%, rgb(52, 119, 187) 86%);"></div>
                     </div>
                 </div>
-                
+
                 <div id="page2" style="width: 100vw;">
                     <div>
                         <canvas id="GameOfLife" style="z-index: 0; position: absolute;"></canvas>
@@ -85,69 +95,117 @@
                 <div id="page5" style="width: 100vw;">
                     <div class="grand-text-S2" style="position: absolute; color: #dfdfdf; z-index: 1; display: flex; width: 100vw;  align-items: center;">
                         <div style="width: 100vw; height: 100vh; display: flex; flex-direction: column; align-items: center;">
-                            <div style=" margin: 5vh 0 5vh 0;">
-                                <h1 class="rainbowColor" style="text-align: center; background-color: rgba(17, 17, 17, 0.76); border-radius: 5px; padding: 15px;">And more here :</h1>
+                            <div style=" margin: clamp(10px,5vh,20px) 0 clamp(10px,5vh,20px) 0;">
+                                <h1 id="moreHereText" class="rainbowColor">And more here :</h1>
                             </div>
-                            <div style="display: flex; flex-direction: row;">
-                                <div>
-                                    <ul class="ULcollection">
-                                        <li class="liLink" class="liLink">
-                                            <a href="ext/neuron_web/index.html" class="glitchEffect">neuron_web</a>
-                                        </li>
-                                        <li class="liLink">
-                                            <a href="ext/jeu-1_V2/index.html" class="glitchEffect">snake like</a>
-                                        </li>
-                                        <li class="liLink">
-                                            <a href="ext/matrixFullScreen/index.html" class="glitchEffect">Matrix</a>
-                                        </li>
-                                        <li class="liLink">
-                                            <a href="ext/snow flake/index.html" class="glitchEffect">snow flake animation</a>
-                                        </li>
-                                        <li class="liLink">
-                                            <a href="ext/fractal_tree/index.html" class="glitchEffect">fractale tree animation</a>
-                                        </li>
-                                        <li class="liLink">
-                                            <a href="ext/GameOfLife/index.html" class="glitchEffect">Game of life</a>
-                                        </li>
-                                        <li class="liLink">
-                                            <a href="ext/MagicWand/index.html" class="glitchEffect">MagicWand</a>
-                                        </li>
-                                        <li class="liLink">
-                                            <a href="ext/environment_projectV2/index.html" class="glitchEffect">environment game</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div>
-                                    <ul class="ULcollection">
-                                       
-                                        <li class="liLink">
-                                            <a href="ext/MatrixWand/MatrixWand.html" class="glitchEffect">MatrixWand</a>
-                                        </li>
-                                        <li class="liLink">
-                                            <a href="ext/DVDanimation/DVDanimation.html" class="glitchEffect">DVD animation background</a>
-                                        </li>
-                                        <li class="liLink">
-                                            <a href="ext/ClockBackground/ClockBackground.html" class="glitchEffect">ClockBackground animation</a>
-                                        </li>
-                                        <li class="liLink">
-                                            <a href="ext/hexagonalGride/index.html" class="glitchEffect">Hexagonal Game Of Life</a>
-                                        </li>
-                                        <li class="liLink">
-                                            <a href="ext/ClickMe/index.html" class="glitchEffect">Click me ...</a>
-                                        </li>
-                                        <li class="liLink">
-                                            <a href="ext/rainAndFlower/index.html" class="glitchEffect">weather effect</a>
-                                        </li>
-                                        <li class="liLink">
-                                            <a href="ext/grassSimulation/index.html" class="glitchEffect">grass simulation</a> 
-                                        </li>
-                                    </ul>
+                            <div>
+                                <div id="linkContainer">
+                                    <div class="divA">
+                                        <a href="ext/neuron_web/index.html" class="glitchEffect">Neuron_web</a>
+                                    </div>
+                                    <div class="divA">
+                                        <a href="ext/jeu-1_V2/index.html" class="glitchEffect">Snake like</a>
+                                    </div>
+                                    <div class="divA">
+                                        <a href="ext/matrixFullScreen/index.html" class="glitchEffect">Matrix</a>
+                                    </div>
+                                    <div class="divA">
+                                        <a href="ext/snow flake/index.html" class="glitchEffect">Snow-flake</a>
+                                    </div>
+                                    <div class="divA">
+                                        <a href="ext/fractal_tree/index.html" class="glitchEffect">Fractale tree</a>
+                                    </div>
+                                    <div class="divA">
+                                        <a href="ext/GameOfLife/index.html" class="glitchEffect">Game of life</a>
+                                    </div>
+                                    <div class="divA">
+                                        <a href="ext/MagicWand/index.html" class="glitchEffect">MagicWand</a>
+                                    </div>
+                                    <div class="divA">
+                                        <a href="ext/environment_projectV2/index.html" class="glitchEffect">Environment-game</a>
+                                    </div>
+                                    <div class="divA">
+                                        <a href="ext/MatrixWand/MatrixWand.html" class="glitchEffect">MatrixWand</a>
+                                    </div>
+                                    <div class="divA">
+                                        <a href="ext/DVDanimation/DVDanimation.html" class="glitchEffect">DVD animation</a>
+                                    </div>
+                                    <div class="divA">
+                                        <a href="ext/ClockBackground/ClockBackground.html" class="glitchEffect">Clock background</a>
+                                    </div>
+                                    <div class="divA">
+                                        <a href="ext/hexagonalGride/index.html" class="glitchEffect">Hexagonal game of life</a>
+                                    </div>
+                                    <div class="divA">
+                                        <a href="ext/ClickMe/index.html" class="glitchEffect">Click me ...</a>
+                                    </div>
+                                    <div class="divA">
+                                        <a href="ext/rainAndFlower/index.html" class="glitchEffect">Weather effect</a>
+                                    </div>
+                                    <div class="divA">
+                                        <a href="ext/grassSimulation/index.html" class="glitchEffect">Grass simulation</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div>
                         <canvas id="MagicWand" style="z-index: 0; position: absolute;"></canvas>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        <section id="section3" style="display: flex; flex-direction: column;">
+            <div style="height: 100%; flex-direction: column; justify-content: space-evenly;">
+                <div id="sec3container">
+                    <div style="display: flex; align-items: center;">
+                        <div style="max-width: 550px; padding: 20px 0px 20px 20px; max-height: 300px;">
+                            <a href="http://onbg.herokuapp.com" target="blank" style="text-decoration: none;">
+                                <h1 id="BoardGameOnlineTitle" style="font-size: 3.2rem; font-weight: 800; line-height: 1.15; color:#fff8e8;">Board game online</h1>
+                            </a>
+                            <p style="color: #FFF; font-size: 1.4rem; line-height: 1.4; margin-top: 20px;">My <span style="color: #74e3ed;">online</span> web hub game powered by <span style="color: #79f970;">NodeJS</span> to play <span style="color: #fcb0ae;">multiplayer</span> game with your friends at the same time anywhere.</p>
+                        </div>
+
+                    </div>
+                    <div style="max-width: 550px;">
+                        <div style="display: flex; flex-direction: column; align-items: center;">
+                            <div style="display: flex;">
+
+                                <div style="transform: translate(-70px, 10px) rotate(70deg)">
+                                    <img class="imgArrow" src="img/arrow1.png">
+                                </div>
+                                <div style="transform: translate(-20px, -40px) rotate(130deg)">
+                                    <img class="imgArrow" src="img/arrow5.png">
+                                </div>
+                                <div style="transform: translate(50px, 0px) rotate(180deg)">
+                                    <img class="imgArrow" src="img/arrow3.png">
+                                </div>
+                            </div>
+                            <div>
+                                <a href="http://onbg.herokuapp.com" target="blank" style="text-decoration: none;">
+                                    <h1 id="ClickHereRGB" style="font-size: 4rem; font-weight: 800; line-height: 1.15; color:#fff8e8;">Click here</h1>
+                                </a>
+                            </div>
+                            <div style="display: flex;">
+                                <div style="transform: translate(-50px, 30px) rotate(0deg)">
+                                    <img class="imgArrow" src="img/arrow2.png">
+                                </div>
+                                <div style="transform: translate(20px, 30px) rotate(50deg)">
+                                    <img class="imgArrow" src="img/arrow6.png">
+                                </div>
+                                <div style="transform: translate(110px, 0px) rotate(260deg)">
+                                    <img class="imgArrow" src="img/arrow4.png">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div style="padding: 10px; max-height: 800px; display: flex; justify-content: center; margin-top: 20px;">
+                    <div style="background-color: rgb(0,0,0, 35%); border-radius: 8px; position: relative; width: clamp(350px,40vw,800px);">
+                        <img src="img/onbg-morpion.png" alt="image morpion de onbg" class="imgOnbg" id="imgOnbg2">
+                        <img src="img/onbg-acceille.png" alt="image acceille de onbg" class="imgOnbg">
                     </div>
                 </div>
 
@@ -171,4 +229,22 @@
 <script>
     document.querySelector('[style*="text-align: right;position: fixed;z-index:9999999"]').style.visibility = "hidden";
 </script>
+<!-- ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣶⣿⣿⣿⣿⣿⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣿⣿⣿⠿⠟⠛⠻⣿⠆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⣿⣆⣀⣀⠀⣿⠂⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⠻⣿⣿⣿⠅⠛⠋⠈⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⢼⣿⣿⣿⣃⠠⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⣟⡿⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣛⣛⣫⡄⠀⢸⣦⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣠⣴⣾⡆⠸⣿⣿⣿⡷⠂⠨⣿⣿⣿⣿⣶⣦⣤⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣤⣾⣿⣿⣿⣿⡇⢀⣿⡿⠋⠁⢀⡶⠪⣉⢸⣿⣿⣿⣿⣿⣇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣿⣿⣿⣿⣿⣿⣿⣿⡏⢸⣿⣷⣿⣿⣷⣦⡙⣿⣿⣿⣿⣿⡏⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⣿⣿⣿⣿⣿⣿⣿⣿⣇⢸⣿⣿⣿⣿⣿⣷⣦⣿⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢹⣿⣵⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣯⡁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀-->
 </html>

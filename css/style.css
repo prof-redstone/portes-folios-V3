@@ -17,6 +17,7 @@ p,
 span {
     margin: 0;
     padding: 0;
+    font-family: "Poppins";
 }
 
 button {
@@ -56,7 +57,29 @@ section {
     align-items: center;
 }
 
+/*menu contact premiere page*/
+#contact-menu {
+    background-color: #000;
+    z-index: 5;
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 5px;
+    width: auto;
+    border-bottom-left-radius: 10px;
+    display: flex;
+}
 
+#show-contact-menu{
+    display: none;
+    width: 0;
+    opacity: 0;
+    animation-duration: 0.3s;
+}
+
+.contact-link {
+    margin: 3px;
+}
 
 .grand-text {
     font-size: 4.5em;
@@ -84,23 +107,6 @@ section {
     font-size: 4em;
 }
 
-@media only screen and (max-width: 1000px) {
-    .grand-text-S2 {
-        font-size: 2.5em;
-    }
-}
-
-@media only screen and (max-width: 700px) {
-    .grand-text-S2 {
-        font-size: 1.5em;
-    }
-}
-
-@media only screen and (max-width: 400px) {
-    .grand-text-S2 {
-        font-size: 1.2em;
-    }
-}
 
 .BGsection2 {
     background-color: #2aacb8;
@@ -139,100 +145,247 @@ section {
 
 .arrowImg:hover {
     border-color: rgb(0, 0, 0);
-    /*padding: 10px;
-    width: clamp(50px, 9vw, 75px);*/
     transform: scale(0.9);
 }
 
-/*
-#text-page2-1 {
-    background-image: linear-gradient(transparent calc(95% - 5px), #000cc4 5px);
-    background-size: 100%;
-    background-size: 0%;
-    background-repeat: no-repeat;
-    display: inline;
-    text-align: center;
-    transition: 0.5s ease;
-}
 
-#text-page2-1:hover {
-    background-size: 100%;
-}
-*/
-
-/*
-.rainbowColor:hover{
-    background: #FFF;
-    background-image: linear-gradient( to top, #FFF, rgba(222,168,248,1) 0%, rgba(168,222,258,1) 21.9%, rgba(189,250,205,1) 35.6%, rgba(243,250,189,1) 53.9%, rgba(250,227,189,1) 66.8%, rgba(248,172,171,1) 95%, rgba(254,170,212,1) 99.9% );
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-size: 100% 1600%;
-    animation: BackgroundMove 6s ease infinite;
-}
-
-@keyframes BackgroundMove {
-    0%{background-position:50% -50%}
-    50%{background-position:50% 100%}
-    100%{background-position:50% -50%}
-}*/
-
-.rainbowColor{
+.rainbowColor {
     position: relative;
 }
 
-.rainbowColor:before{
+.rainbowColor:before {
     content: "";
     position: absolute;
     bottom: 0;
     left: 0;
     border-radius: 2px;
-    transition: all 0.3s ease-in-out;
+    transition: all 0.1s ease-in-out;
     background: rgb(89, 180, 53);
     width: 100%;
-    height: 0%;
+    height: 0px;
 }
 
-.rainbowColor:hover:before{
+.rainbowColor:hover:before {
     height: 5%;
 }
 
 @keyframes BackgroundMove {
-    0%{background-position:50% -50%}
-    50%{background-position:50% 100%}
-    100%{background-position:50% -50%}
+    0% {
+        background-position: 50% -50%
+    }
+
+    50% {
+        background-position: 50% 100%
+    }
+
+    100% {
+        background-position: 50% -50%
+    }
 }
 
-.glitchEffect{
-    font-size: 0.5em;
+#moreHereText {
+    font-size: clamp(0.3em, 7vh, 1em);
+    text-align: center;
+    background-color: rgba(17, 17, 17, 0.76);
+    border-radius: 5px;
+    padding: 15px;
 }
 
-.ULcollection{
-    list-style: none;
-    line-height: 0.6em;
-    margin: 0;
-    padding: 20px;
+
+
+#linkContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    /*border: 2px solid white;*/
+    width: 80vw;
+    max-width: 1100px;
     border-radius: 5px;
     background-color: rgba(17, 17, 17, 0.76);
+    line-height: clamp(0.3em, 4vh, 4em);
+    gap: 10px;
+    padding: 5px;
 }
 
-.glitchEffect{
+.glitchEffect {
+    display: block;
     position: relative;
     text-decoration: none;
     color: #dfdfdf;
+    width: max-content;
+    font-size: 0.5em;
+    height: 1em;
 }
 
-.glitchEffect:before{
+.divA {
+    width: 300px;
+}
+
+
+.glitchEffect:before {
     content: "";
     position: absolute;
-    bottom: 0;
+    bottom: -2px;
     left: -2px;
     border-radius: 2px;
     transition: all 0.3s ease-in-out;
     background: #c848cf;
     width: 0%;
-    height: 10%;
+    height: 3px;
 }
 
-.glitchEffect:hover:before{
+.glitchEffect:hover:before {
     width: calc(100% + 4px);
+}
+
+@media only screen and (max-width: 1000px) {
+    .grand-text-S2 {
+        font-size: 2.5em;
+    }
+
+    .glitchEffect {
+        font-size: clamp(0.1em, 10vw, 0.7em);
+    }
+}
+
+@media only screen and (max-width: 700px) {
+    .grand-text-S2 {
+        font-size: 1.5em;
+    }
+
+    .glitchEffect {
+        font-size: 6vw;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    .grand-text-S2 {
+        font-size: 1.2em;
+    }
+
+    .glitchEffect {
+        font-size: 6vw;
+    }
+}
+
+
+#section3 {
+    background-color: #3e70bc;
+}
+
+.imgOnbg {
+    transform: translate(10px, -10px);
+    width: clamp(350px, 40vw, 800px);
+
+}
+
+#imgOnbg2 {
+    opacity: 0;
+    position: absolute;
+    z-index: 1;
+    animation: fade-in-out 10s infinite;
+}
+
+@keyframes fade-in-out {
+    0% {
+        opacity: 0;
+    }
+
+    48% {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    98% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+.imgArrow {
+    width: 8rem;
+    animation: giggle 1s infinite;
+}
+
+@keyframes giggle {
+    0% {
+        transform: rotate3d(0, 0, 1, 0deg);
+    }
+
+    50% {
+        transform: rotate3d(0, 0, 1, 5deg);
+    }
+
+    100% {
+        transform: rotate3d(0, 0, 1, 0deg);
+    }
+}
+
+#sec3container {
+    display: flex;
+    margin-top: 7vh;
+    width: 98%;
+    max-height: 600px;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    background-color: #3e70bc;
+}
+
+@media only screen and (max-width: 600px) {
+    #sec3container {
+        margin-top: 0vh;
+    }
+
+    p {
+        margin: 0px !important;
+    }
+}
+
+#ClickHereRGB {
+    position: relative;
+}
+
+#ClickHereRGB::before {
+    content: " ";
+    left: 0;
+    bottom: 0;
+    height: 4px;
+    width: 100%;
+    position: absolute;
+    animation: rgb 4s infinite;
+}
+
+@keyframes rgb {
+    0% {
+        background-color: cyan;
+    }
+
+    16% {
+        background-color: blue;
+    }
+
+    33% {
+        background-color: magenta;
+    }
+
+    49% {
+        background-color: red;
+    }
+
+    66% {
+        background-color: yellow;
+    }
+
+    81% {
+        background-color: #0F0;
+    }
+
+    100% {
+        background-color: cyan;
+    }
 }

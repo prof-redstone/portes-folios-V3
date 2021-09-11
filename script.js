@@ -84,6 +84,15 @@ function ScroollPostion(x) {
             UpdateScrollP2()
             
         }
+        if (scrollPostion == 200) {
+            
+            var autoTypeBoardGameOnlineTitle = new AutoType({
+                parent: document.getElementById("BoardGameOnlineTitle"),
+                writeSpeed: 170,
+                opacityTransition: 0.2,
+                className: ["rotHover"]
+            }).Write("Board game online").Start()
+        }
     }
 }
 

@@ -26,6 +26,7 @@ function NeuronWeb() {
         mouseY = canvasNeuronWeb.height / 2
 
         nbOrbs = ((canvasNeuronWeb.width + 340) * (canvasNeuronWeb.height + 340)) / 10000 //ratio cool
+        nbOrbs = Math.min(nbOrbs, 300)
 
         for (var i = 0; i < nbOrbs; i++) {
             collectionOfOrbs[i] = new neuronWebOrbs(canvasNeuronWeb.width, canvasNeuronWeb.height);
