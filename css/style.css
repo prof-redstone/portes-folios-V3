@@ -346,18 +346,25 @@ section {
     }
 }
 
-#ClickHereRGB {
+/*page 3 onbg (je crois que ça commence ici)*/
+#ClickherespanP3 {
     position: relative;
+    color: white;
+    font-weight: bold;
 }
 
-#ClickHereRGB::before {
+#ClickherespanP3::before {
     content: " ";
-    left: 0;
-    bottom: 0;
-    height: 4px;
-    width: 100%;
     position: absolute;
+    left: 2%;
+    bottom: 0;
+    height: 2px;
+    width: 94%;
     animation: rgb 4s infinite;
+}
+
+#ClickherespanP3{
+
 }
 
 @keyframes rgb {
