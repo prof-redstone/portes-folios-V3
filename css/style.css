@@ -7,6 +7,16 @@ body {
     overflow-y: hidden;
 }
 
+#main{
+    scroll-snap-type: y mandatory;
+    overflow-y: scroll;
+    height: 100vh;
+    overflow-x: hidden;
+}
+.sectionPage{
+    scroll-snap-align: start;
+}
+
 h1,
 h2,
 h3,
@@ -54,7 +64,7 @@ section {
 }
 
 #section-home {
-    align-items: center;
+    
 }
 
 /*menu contact premiere page*/

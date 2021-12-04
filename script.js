@@ -69,92 +69,90 @@ function nb_random(min, max) { //fonction générant un nombre aléatoire entier
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-var scrollPostion = 0 //full-page-scroll.js change this valu on scroll
-function ScroollPostion(x) {
-    if (x != scrollPostion) {
-        scrollPostion = x
 
-        if (scrollPostion == 0) {
-            NeuronWebCanvas.StartNeuroneWeb()
-            grassSimulationCanvas.StopGrassSimulation()
-        } else {
-            NeuronWebCanvas.StopNeuronWeb()
-        }
-        if (scrollPostion == 100) {
-            UpdateScrollP2()
-            
-        }
-        if (scrollPostion == 200) {
-            
-            var autoTypeBoardGameOnlineTitle = new AutoType({
-                parent: document.getElementById("BoardGameOnlineTitle"),
-                writeSpeed: 170,
-                opacityTransition: 0.2,
-                className: ["rotHover"]
-            }).Write("Board game online").Start()
-        }
+document.getElementById("main").onscroll = function() { 
+    //console.log(document.getElementById("main").scrollTop);
+    //console.log(document.getElementById("main").clientHeight)
+
+    var main = document.getElementById("main");
+    if(main.scrollTop == 0 * main.clientHeight){
+        NeuronWebCanvas.StartNeuroneWeb();
+        grassSimulationCanvas.StopGrassSimulation();
+    }else {
+        NeuronWebCanvas.StopNeuronWeb()
+    }
+    if(main.scrollTop == 1 * main.clientHeight){
+        UpdateScrollP2(0);//normal
+    }else{
+        UpdateScrollP2(1); //force l'arret de toutes les animations qui ne sont pas affichées
+    }
+    if(main.scrollTop == 2 * main.clientHeight){
+        var autoTypeBoardGameOnlineTitle = new AutoType({
+            parent: document.getElementById("BoardGameOnlineTitle"),
+            writeSpeed: 220,
+            opacityTransition: 0.2,
+            className: ["rotHover"]
+        }).Write("Board game online").Start()
     }
 }
-
-window.onscroll = function() { //pour reset la scroll bar sinon bug
-    window.scroll(0, 0);
-}
-new fullScroll({ //scroll magique avec puce
-    mainElement: "main",
-    sections: 'section',
-    displayDots: true,
-    dotsPosition: "right",
-    animateTime: 0.5,
-    animateFunction: "ease",
-});
-
 
 
 //Page 2 part 1
 var HScrollProject = 0
-var HScrollProjectMax = 4
-function UpdateScrollP2(){
+const HScrollProjectMax = 4
+function UpdateScrollP2(param = 0){ //pour arreter et démarer les annimations en fonction du scroll et de l'affichage pour la page 2 
+    if(param == 0){//nomal, active et stop les animation en fonction de ce qui est affiché 
+        try {
+            if (HScrollProject == 0) {
+                grassSimulationCanvas.StartGrassSimulation()
+            }else{
+                grassSimulationCanvas.StopGrassSimulation()
+            }
+        
+            if (HScrollProject == 1) {
+                GameOfLifeCanvas.Start()
+            }else{
+                GameOfLifeCanvas.Stop()
+            }
+        
+            if (HScrollProject == 2) {
+                ClockBackgroundCanvas.Start()
+            }else{
+                ClockBackgroundCanvas.Stop()
+            }
+        
+            if (HScrollProject == 3) {
+                matrixCanvas.Start()
+            }else{
+                matrixCanvas.Stop()
+            }
+        
+            if (HScrollProject == 4) {
+                magicWandCanvas.Start()
+            }else{
+                magicWandCanvas.Stop()
+            }
     
-    try {
-        if (HScrollProject == 0) {
-            grassSimulationCanvas.StartGrassSimulation()
-        }else{
-            grassSimulationCanvas.StopGrassSimulation()
+        } catch (error) {
+            console.error(error)
         }
-    
-        if (HScrollProject == 1) {
-            GameOfLifeCanvas.Start()
-        }else{
-            GameOfLifeCanvas.Stop()
-        }
-    
-        if (HScrollProject == 2) {
-            ClockBackgroundCanvas.Start()
-        }else{
-            ClockBackgroundCanvas.Stop()
-        }
-    
-        if (HScrollProject == 3) {
-            matrixCanvas.Start()
-        }else{
-            matrixCanvas.Stop()
-        }
-    
-        if (HScrollProject == 4) {
-            magicWandCanvas.Start()
-        }else{
-            magicWandCanvas.Stop()
-        }
-
-    } catch (error) {
-        console.error(error)
     }
-
-    
-
+    if (param == 1) { //stop toute les animations car on est sur une autre section
+        try {
+            grassSimulationCanvas.StopGrassSimulation()
+            GameOfLifeCanvas.Stop()
+            ClockBackgroundCanvas.Stop()
+            matrixCanvas.Stop()
+            magicWandCanvas.Stop()
+        } catch (error) {
+            console.error(error)
+        }
+    }
+    //décaller la page vers la postion selectionné 
     document.getElementById('pageContainer').style.transform = ("translateX(-"+HScrollProject*100+"vw)")
 }
 
+//les petites fleches sur la page 2 qui permet de naviguer entre les pages de gauche à droite
 let P2BtnRight = document.getElementById("P2btnRight")
 P2BtnRight.addEventListener("click", ()=>{
     HScrollProject = (HScrollProject+1 > HScrollProjectMax) ? 0 : HScrollProject+1
