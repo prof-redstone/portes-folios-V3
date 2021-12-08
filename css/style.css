@@ -63,9 +63,10 @@ section {
 
 }
 
-#section-home {
-    
-}
+a:link, a:visited {
+    color: white;
+    text-decoration: none;
+  }
 
 /*menu contact premiere page*/
 #contact-menu {
