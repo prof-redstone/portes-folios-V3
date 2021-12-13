@@ -87,12 +87,12 @@ document.getElementById("main").onscroll = function() {
         UpdateScrollP2(1); //force l'arret de toutes les animations qui ne sont pas affichées
     }
     if(main.scrollTop == 2 * main.clientHeight){
-        var autoTypeBoardGameOnlineTitle = new AutoType({
+        /*var autoTypeBoardGameOnlineTitle = new AutoType({
             parent: document.getElementById("BoardGameOnlineTitle"),
             writeSpeed: 220,
             opacityTransition: 0.2,
             className: ["rotHover"]
-        }).Write("Board game online").Start()
+        }).Write("Board game online").Start()*/
     }
 }
 
