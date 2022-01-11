@@ -163,3 +163,33 @@ P2BtnLeft.addEventListener("click", ()=>{
     HScrollProject = (HScrollProject-1 < 0) ? HScrollProjectMax : HScrollProject-1
     UpdateScrollP2()
 })
+
+//page 4 section 4 fractal generator 
+
+var fractalCollectionImg = document.getElementsByClassName('imgTopTransition');
+var fractalImageShowIndex = 0 //0 = celle du fond qui n'est pas dans la liste
+console.log(fractalCollectionImg)
+
+
+var fractalImageloop = setInterval(()=>{
+    fractalImageShowIndex +=1
+    fractalImageShowIndex %= fractalCollectionImg.length
+    function Mod(x,a){
+        while (x < 0){
+            x+= a
+        }
+        return x % a
+    }
+    
+    fractalCollectionImg[Math.abs(Mod(fractalImageShowIndex+1,fractalCollectionImg.length))].classList.remove("imgOpacityOut")
+    fractalCollectionImg[Math.abs(Mod(fractalImageShowIndex+1,fractalCollectionImg.length))].classList.add("imgOpacityIn")
+    fractalCollectionImg[Math.abs(Mod(fractalImageShowIndex-1,fractalCollectionImg.length))].classList.remove("imgOpacityIn")
+    fractalCollectionImg[Math.abs(Mod(fractalImageShowIndex-1,fractalCollectionImg.length))].classList.add("imgOpacityOut")
+    
+    if (fractalImageShowIndex == fractalCollectionImg.length -1) {
+        fractalCollectionImg[Math.abs(Mod(fractalImageShowIndex,fractalCollectionImg.length))].classList.remove("imgOpacityIn")
+        fractalCollectionImg[Math.abs(Mod(fractalImageShowIndex,fractalCollectionImg.length))].classList.add("imgOpacityOut")
+    }
+    
+},4000)
+

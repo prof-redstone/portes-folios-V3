@@ -7,13 +7,14 @@ body {
     overflow-y: hidden;
 }
 
-#main{
+#main {
     scroll-snap-type: y mandatory;
     overflow-y: scroll;
     height: 100vh;
     overflow-x: hidden;
 }
-.sectionPage{
+
+.sectionPage {
     scroll-snap-align: start;
 }
 
@@ -63,10 +64,11 @@ section {
 
 }
 
-a:link, a:visited {
+a:link,
+a:visited {
     color: white;
     text-decoration: none;
-  }
+}
 
 /*menu contact premiere page*/
 #contact-menu {
@@ -81,7 +83,7 @@ a:link, a:visited {
     display: flex;
 }
 
-#show-contact-menu{
+#show-contact-menu {
     display: none;
     width: 0;
     opacity: 0;
@@ -403,4 +405,124 @@ a:link, a:visited {
     100% {
         background-color: cyan;
     }
+}
+
+
+/* section 4*/
+
+#section4 {
+    background-color: #0452DC;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#section4 > div{
+    display: flex; 
+    width: 1200px; 
+    justify-content: space-between; 
+    align-items: center;
+}
+
+.imgFractal {
+    width: 600px;
+    border-radius: 8px;
+}
+
+#titleS4 {
+    position: relative;
+    width: fit-content;
+}
+
+#titleS4:before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    border-radius: 2px;
+    transition: all 0.1s ease-in-out;
+    background: rgb(15, 15, 10);
+    width: 100%;
+    height: 0px;
+}
+
+#titleS4:hover:before {
+    height: 5%;
+}
+
+@media only screen and (max-width: 1220px) {
+    .imgFractal {
+        width: 500px;
+    }
+    #section4 > div{
+        width: 1000px;
+    }
+}
+
+@media only screen and (max-width: 1000px) {
+    #section4 > div{
+        flex-direction: column;
+    }
+}
+
+.giggleLR{
+    animation: GiggleLR infinite 2s;
+}
+
+@keyframes GiggleLR{
+    0% {
+        transform: translate(0px);
+    }
+    50% {
+        transform: translate(7px);
+    }
+    0% {
+        transform: translate(0px);
+    }
+}
+
+/*pour le fondus enchainé entre les photos*/
+.imgTopTransition {
+    opacity: 0;
+    position: absolute;
+    animation-fill-mode: forwards !important;
+}
+
+.imgOpacityIn {
+    animation: fadeinFractal 0.5s linear;
+}
+
+@keyframes fadeinFractal {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.imgOpacityOut {
+    animation: fadeoutFractal 0.5s linear;
+}
+
+@keyframes fadeoutFractal {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+.GithubBTN {
+    background-color: #1d1d1d;
+    color: white;
+    border-radius: 5px;
+}
+.GithubBTN:hover{
+    color: #1d1d1d;
+    background-color: white;
+    transition: 0.5s;
 }
