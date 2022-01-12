@@ -75,18 +75,18 @@ document.getElementById("main").onscroll = function() {
     //console.log(document.getElementById("main").clientHeight)
 
     var main = document.getElementById("main");
-    if(main.scrollTop == 0 * main.clientHeight){
+    if(Math.round(main.scrollTop) == 0 * main.clientHeight){
         NeuronWebCanvas.StartNeuroneWeb();
         grassSimulationCanvas.StopGrassSimulation();
     }else {
         NeuronWebCanvas.StopNeuronWeb()
     }
-    if(main.scrollTop == 1 * main.clientHeight){
+    if(Math.round(main.scrollTop) == 1 * main.clientHeight){
         UpdateScrollP2(0);//normal
     }else{
         UpdateScrollP2(1); //force l'arret de toutes les animations qui ne sont pas affichées
     }
-    if(main.scrollTop == 2 * main.clientHeight){
+    if(Math.round(main.scrollTop) == 2 * main.clientHeight){
         /*var autoTypeBoardGameOnlineTitle = new AutoType({
             parent: document.getElementById("BoardGameOnlineTitle"),
             writeSpeed: 220,
@@ -168,7 +168,6 @@ P2BtnLeft.addEventListener("click", ()=>{
 
 var fractalCollectionImg = document.getElementsByClassName('imgTopTransition');
 var fractalImageShowIndex = 0 //0 = celle du fond qui n'est pas dans la liste
-console.log(fractalCollectionImg)
 
 
 var fractalImageloop = setInterval(()=>{
