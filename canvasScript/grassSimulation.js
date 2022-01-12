@@ -14,11 +14,41 @@ function grassSimulation() {
         windProb: 50
     }
 
+    let nbCloud = 30
+    var cloud = []
+
+
     function UpdateDelteTime() {
         let now = Date.now()
         let dt = (now - lastUpdate) / 50
         lastUpdate = now
         return Math.min(dt, 2.5)
+    }
+
+    class Cloud{
+        constructor(x,y,size,alpha){
+            this.x = x;
+            this.y = y;
+            this.size = size;
+            this.alpha = alpha;
+            this.counter = nb_random(0,1000)
+            this.mx = this.x;
+            this.my = this.y;
+
+        }
+
+        Draw(){
+            ctx.fillStyle = "rgba(255,255,255," + this.alpha + ")";
+            ctx.beginPath()
+            ctx.arc(this.mx, this.my, this.size, 0, 6.28318);
+            ctx.fill()
+        }
+
+        Update(){
+            this.counter ++
+            this.mx += Math.sin(this.counter/30)
+            this.my += Math.cos(this.counter/50)/3
+        }
     }
 
     class StrandGrass {
@@ -92,6 +122,9 @@ function grassSimulation() {
             brand.push(new StrandGrass(nb_random(-20, canvas.width + 20), canvas.height, nb_random(250, 350)))
         }
 
+        for (let i = 0; i < nbCloud; i++) {
+            cloud.push(new Cloud(nb_random(0,canvas.width), nb_random(0,canvas.height/4), nb_random(40, 80), nb_random(20,45)/100))
+        }
 
 
         loop()//juste do 1 loop, need to start after
@@ -110,6 +143,13 @@ function grassSimulation() {
             
         }
         NaturalWindUpdate()
+
+        for (let i = 0; i < cloud.length; i++) {
+            cloud[i].Update()
+            ctx.fillStyle = "rgba(255,255,255,0.3)"
+            cloud[i].Draw()
+            
+        }
 
     }
 
