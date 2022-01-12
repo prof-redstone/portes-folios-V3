@@ -14,7 +14,7 @@ function grassSimulation() {
         windProb: 50
     }
 
-    let nbCloud = 30
+    let nbCloud = canvas.width/30
     var cloud = []
 
 
@@ -122,6 +122,8 @@ function grassSimulation() {
             brand.push(new StrandGrass(nb_random(-20, canvas.width + 20), canvas.height, nb_random(250, 350)))
         }
 
+        cloud = []
+        nbCloud = canvas.width/30
         for (let i = 0; i < nbCloud; i++) {
             cloud.push(new Cloud(nb_random(0,canvas.width), nb_random(0,canvas.height/4), nb_random(40, 80), nb_random(20,45)/100))
         }
