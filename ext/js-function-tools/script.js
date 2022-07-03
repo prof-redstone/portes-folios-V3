@@ -77,10 +77,3 @@ for (let i = 0; i < 500; i++) {
 }
 
 var c=0
-/*setInterval(()=>{
-    ctx.clearRect(0,0,1000,1000)
-    c+=0.5
-    for (let i = 0; i < 1000; i++) {
-        ctx.fillRect(i*1,50,1,(get(i/50,c/50) + 0.2*get(i/10,c/10) + 0.1*get(i/5,c/5) )*50)
-    }
-},10)*/
