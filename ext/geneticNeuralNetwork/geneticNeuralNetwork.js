@@ -2,24 +2,33 @@ var canvas = document.getElementById("canvas")
 var ctx = canvas.getContext("2d")
 
 var W = 400;
-var H = 400
+var H = 700;
 ctx.canvas.width = W;
 ctx.canvas.height = H;
 
+var time = 0;
 
-var patternLayer = [4, 5, 5, 1] //number of neurone for each layer, first is input, last is output
 
-var g = new goal() //la boite noir qu'il faut toucher au maximum
-g.reset()
-
-var nbBird = 20;
+var nbBird = 100; //multiple de 2 pls
 var listbird = []
+
+var collecGene = []
+var timeGeneation = 500;
+var rationMuteGene = 30;
+
+
+//number of neurone for each layer, first is input, last is output
+var patternLayer = [4, 3, 3, 1]
 
 for (let i = 0; i < nbBird; i++) {
     listbird[i] = new bird()
     listbird[i].init()
 }
 
+
+//la boite noir qu'il faut toucher au maximum
+var g = new goal()
+g.reset()
 
 function setup() {
     setInterval(loop, 30);
@@ -37,13 +46,56 @@ function loop() {
 
     g.update()
     g.render()
+
+
+    time++;
+
+    if (time % timeGeneation == 0) {
+        //end generation, get best gene score, and reproduce to make better generation
+        /*
+        1 copi de gene
+        2 tri en F des scores
+        3 supprimer les plus nuls
+        4 dupli de la moitié + modif
+        */
+
+        //1
+        collecGene = [];
+        for (let i = 0; i < listbird.length; i++) {
+            collecGene[i] = [deepCopyFunction(listbird[i].score), deepCopyFunction(listbird[i].gene)]
+        }
+
+        //2
+        sort(collecGene)
+
+        //3 , on supprime la moitie des birds pour garder que les meilleurs
+        for (let i = 0; i < listbird.length / 2; i++) {
+            collecGene.pop()
+        }
+
+        //4
+        for (let i = 0; i < listbird.length / 2; i++) { //premiere moitie, on redonne les genes
+            listbird[i].setGene(collecGene[i][1])
+        }
+        for (let i = 0; i < listbird.length / 2; i++) { //seconde moitie, on donnes les meme genes mais on les mutes
+            listbird[i + listbird.length / 2].setGene(collecGene[i][1])
+            listbird[i + listbird.length / 2].mutateGene();
+        }
+
+        //nouveau depart, normalement meilleur.
+        for (let i = 0; i < listbird.length; i++) {
+            listbird[i].reset();
+        }
+
+    }
+
 }
 
 
 
 function bird() {
     this.x = 30
-    this.y = 100
+    this.y = H/2
     this.speedX = 0
     this.speedY = 0
     this.jump //true or false
@@ -57,6 +109,11 @@ function bird() {
     this.init = function() {
         this.color = getRndColor();
         this.gene = getGene();
+    }
+
+    this.reset = function(){
+        this.y = H/2;
+        this.score = 0;
     }
 
     this.update = function() {
@@ -111,6 +168,26 @@ function bird() {
         }
     }
 
+    this.setGene = function(newGene) {
+        this.gene = deepCopyFunction(newGene);
+    }
+
+    this.mutateGene = function() {
+        for (let i = 0; i < this.gene.length; i++) { // each layer
+            //each weight
+            for (let j = 0; j < this.gene[i][0].length; j++) {
+                for (let k = 0; k < this.gene[i][0][j].length; k++) {
+                    this.gene[i][0][j][k] += randomG() / rationMuteGene;
+                }
+            }
+
+            //each biais
+            for (let j = 0; j < this.gene[i][1].length; j++) {
+                this.gene[i][1][j][0] += randomG() / rationMuteGene;
+            }
+        }
+    }
+
 }
 
 
@@ -130,7 +207,7 @@ function goal() {
 
     this.reset = function() {
         this.x = 90;
-        this.y = nb_random(10, H - 10 - this.h)
+        this.y = nb_random(30, H - this.h - 30)
     }
 
     this.render = function() {
@@ -144,7 +221,7 @@ function goal() {
 
 //generate random gene for the first generation
 function getGene() {
-    var gene = [] 
+    var gene = []
     for (let i = 0; i < patternLayer.length - 1; i++) { //pour chaque layer
         gene[i] = [
             [],
@@ -253,6 +330,32 @@ function getRndColor() {
         g = 255 * Math.random() | 0,
         b = 255 * Math.random() | 0;
     return 'rgb(' + r + ',' + g + ',' + b + ')';
+}
+
+//fonction qui fait une copie profonde d'un array, parfaitement dupliqué sans ref
+const deepCopyFunction = (inObject) => {
+    let outObject, value, key
+
+    if (typeof inObject !== "object" || inObject === null) {
+        return inObject // Return the value if inObject is not an object
+    }
+
+    // Create an array or object to hold the values
+    outObject = Array.isArray(inObject) ? [] : {}
+
+    for (key in inObject) {
+        value = inObject[key]
+
+        // Recursively (deep) copy for nested objects, including arrays
+        outObject[key] = deepCopyFunction(value)
+    }
+
+    return outObject
+}
+
+function sort(arr) {
+    const byValueInvert = (a, b) => b[0] - a[0];
+    return arr.sort(byValueInvert);
 }
 
 
