@@ -39,7 +39,7 @@ function loop() {
     for (let i = 0; i < nbX; i++) {
         for (let j = 0; j < nbY; j++) {
             //chut ça marche et fait un truc stylé
-            ctx.fillStyle = colorWheel(i/30 + triangle(time/50,3)*j/20 + time/30 ,1,0, (noise.simplex3(i/20, j/20, time/200)+0.5)*2 -0.5 + triangle(time/200,3)*3)
+            ctx.fillStyle = colorWheel(i/30 + triangle(time/50,3)*j/20 + time/30 ,1,0, (noise.simplex3(i/20, j/20, time/100)+0.5)*2 -0.5 + triangle(time/200,3)*3)
             ctx.fillRect(i*space,j*space,2,2);
         }
     }

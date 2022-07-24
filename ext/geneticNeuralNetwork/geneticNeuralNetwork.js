@@ -14,7 +14,7 @@ var listbird = []
 
 var collecGene = []
 var timeGeneation = 500;
-var rationMuteGene = 30;
+var ratioMuteGene = 30;
 
 
 //number of neurone for each layer, first is input, last is output
@@ -177,13 +177,13 @@ function bird() {
             //each weight
             for (let j = 0; j < this.gene[i][0].length; j++) {
                 for (let k = 0; k < this.gene[i][0][j].length; k++) {
-                    this.gene[i][0][j][k] += randomG() / rationMuteGene;
+                    this.gene[i][0][j][k] += randomG() / ratioMuteGene;
                 }
             }
 
             //each biais
             for (let j = 0; j < this.gene[i][1].length; j++) {
-                this.gene[i][1][j][0] += randomG() / rationMuteGene;
+                this.gene[i][1][j][0] += randomG() / ratioMuteGene;
             }
         }
     }
