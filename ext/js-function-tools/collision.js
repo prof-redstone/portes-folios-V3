@@ -17,7 +17,7 @@ function lineCircle(x1, y1, x2, y2, cx, cy, r) {
     let len = Math.sqrt((distX * distX) + (distY * distY));
 
     // get dot product of the line and circle
-    let dot = (((cx - x1) * (x2 - x1)) + ((cy - y1) * (y2 - y1))) / (len*len);
+    let dot = (((cx - x1) * (x2 - x1)) + ((cy - y1) * (y2 - y1))) / (len * len);
 
     // find the closest point on the line
     let closestX = x1 + (dot * (x2 - x1));
@@ -83,11 +83,9 @@ function linePoint(x1, y1, x2, y2, px, py) {
     return false;
 }
 
-function dist(x1, y1, x2, y2){
-    return Math.sqrt((x1-x2)*(x1-x2) + (y1-y2)*(y1-y2))
+function dist(x1, y1, x2, y2) {
+    return Math.sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2))
 }
-
-
 
 // LINE/LINE
 function lineLine(x1, y1, x2, y2, x3, y3, x4, y4) {

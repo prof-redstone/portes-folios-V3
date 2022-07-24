@@ -4,7 +4,6 @@ var H;
 var W;
 
 var time;
-
 var mode = 'road' //change after when the road is finally edited
 
 var mousebtndown = false;
@@ -14,8 +13,13 @@ var roadPoint = [];
 var spawnPoint = [undefined, undefined];
 var finishPoint = [undefined, undefined];
 
-var cars = new car();
-cars.init()
+var nbcars = 20;
+var carscollec = [];
+//for debugging
+/*var cars = new car();
+cars.init()*/
+
+var timeGeneration = 500;
 
 function setup() {
     var canvas = document.getElementById("IAcarsNeuroevolution");
@@ -26,16 +30,21 @@ function setup() {
     W = ctx.canvas.width;
     time = 0;
 
+    for (let i = 0; i < nbcars; i++) {
+        carscollec[i] = new car();
+        carscollec[i].init(i);
+    }
+
+    SetupNeuroevolutionNetwork({
+        nbEntity: nbcars,
+        pattern: [5, 4, 4, 1]
+    })
     setInterval(loop, 30);
 }
 
 
 function loop() {
     ctx.clearRect(0, 0, W, H)
-
-    if (mode == 'road') {
-        RoadEdit();
-    }
 
     //draw road
     for (let i = 0; i < roadPoint.length - 1; i++) {
@@ -56,18 +65,36 @@ function loop() {
     ctx.fillStyle = "#0F0";
     ctx.fill();
 
-
+    //phase principale
     if (mode == "training") {
-        if (time % 500 == 0) {
-            cars.reset()
+        
+
+        for (let i = 0; i < carscollec.length; i++) {
+            carscollec[i].sensorsUpdate();
+            carscollec[i].processe();
+            carscollec[i].update();
+            carscollec[i].collision();
+        }
+        for (let i = 0; i < carscollec.length; i++) {
+            carscollec[i].render();
         }
 
-        cars.render();
+        /*cars.render();
         cars.update();
         cars.collision();
-        cars.sensorsUpdate();
+        cars.sensorsUpdate();*/
 
         time++
+
+        if (time % timeGeneration == 0) {
+
+            newGeneration();
+
+            //cars.reset()
+            for (let i = 0; i < carscollec.length; i++) {
+                carscollec[i].reset();
+            }
+        }
     }
 }
 
@@ -75,7 +102,7 @@ function car() {
     this.x;
     this.y;
     this.angle;
-    this.gene = [];
+    this.geneIndex;
     this.score;
     this.alive;
     this.timeAlive;
@@ -93,20 +120,20 @@ function car() {
     //input
     this.sensors = []; //the value of sensors
 
-    this.init = function() {
+    this.init = function(geneIndex) {
+        this.geneIndex = geneIndex;
         this.color = getRndColor();
         this.speed = 2;
         this.speedRot = 0.05;
         this.turn = 0;
         this.maxLenghtSensor = 300;
         this.sensorsAngle = [-1.57, -0.78, 0, 0.78, 1.57]; //in rad
-        //this.gene = getGene();
         this.reset()
     }
 
     this.reset = function() {
         this.alive = true;
-        this.x = spawnPoint[0];
+        this.x = spawnPoint[0] + nb_random(0,100);
         this.y = spawnPoint[1];
         this.angle = 0;
         this.score = 0;
@@ -118,7 +145,7 @@ function car() {
             this.x += this.speed * Math.cos(this.angle)
             this.y += this.speed * Math.sin(this.angle)
             this.angle += this.turn * this.speedRot
-            this.timeAlive ++;
+            this.timeAlive++;
         }
     }
 
@@ -177,16 +204,51 @@ function car() {
     }
 
     this.processe = function() {
-
+        //processe the neural network by passing inputs and get back output to move in consequence
+        let input = [
+            [this.sensors[0]],
+            [this.sensors[1]],
+            [this.sensors[2]],
+            [this.sensors[3]],
+            [this.sensors[4]]
+        ]
+        //console.log(this.sensors[2])
+        let output = networkProcesse(input, this.geneIndex);
+        this.turn = output[0][0];
     }
 
-    this.getScore = function(){
-        let distToGoal = Math.sqrt((this.x - finishPoint[0])*(this.x - finishPoint[0]) + (this.y - finishPoint[1])*(this.y - finishPoint[1]));
-        let distOfStartToGoal = Math.sqrt((spawnPoint[0] - finishPoint[0])*(spawnPoint[0] - finishPoint[0]) + (spawnPoint[1] - finishPoint[1])*(spawnPoint[1] - finishPoint[1]));
+    this.getScore = function() {
+        let distToGoal = Math.sqrt((this.x - finishPoint[0]) * (this.x - finishPoint[0]) + (this.y - finishPoint[1]) * (this.y - finishPoint[1]));
+        let distOfStartToGoal = Math.sqrt((spawnPoint[0] - finishPoint[0]) * (spawnPoint[0] - finishPoint[0]) + (spawnPoint[1] - finishPoint[1]) * (spawnPoint[1] - finishPoint[1]));
         let proportionScore = 1;
-        return (distOfStartToGoal - distToGoal)*proportionScore + this.timeAlive;
+        return (distOfStartToGoal - distToGoal) * proportionScore + this.timeAlive;
     }
 
+}
+
+//Line to line collision detector modified
+function SensorCollision(x1, y1, x2, y2, x3, y3, x4, y4) {
+
+    // calculate the distance to intersection point
+    let uA = ((x4 - x3) * (y1 - y3) - (y4 - y3) * (x1 - x3)) / ((y4 - y3) * (x2 - x1) - (x4 - x3) * (y2 - y1));
+    let uB = ((x2 - x1) * (y1 - y3) - (y2 - y1) * (x1 - x3)) / ((y4 - y3) * (x2 - x1) - (x4 - x3) * (y2 - y1));
+
+    // if uA and uB are between 0-1, lines are colliding
+    if (uA >= 0 && uA <= 1 && uB >= 0 && uB <= 1) {
+
+        // optionally, draw a circle where the lines meet
+        let intersectionX = x1 + (uA * (x2 - x1));
+        let intersectionY = y1 + (uA * (y2 - y1));
+
+        let dist = Math.sqrt((x1 - intersectionX) * (x1 - intersectionX) + (y1 - intersectionY) * (y1 - intersectionY));
+        //normalize lenght btw 0 and 1
+        dist = dist / (Math.sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2)));
+        //invert, lim -> 1 quand + en + proche du mur
+        dist = 1 - dist;
+
+        return dist;
+    }
+    return 0;
 }
 
 function RoadEdit(option) {
@@ -200,6 +262,7 @@ function RoadEdit(option) {
 
 addEventListener('mousedown', (event) => {
     mousebtndown = true;
+    //to place a new wall
     RoadEdit(["mousedown", event.clientX, event.clientY])
 });
 
@@ -244,18 +307,9 @@ document.addEventListener('keyup', function(event) {
 
 
 addEventListener("mousemove", (event) => {
+    //met a jour la pos de la souris
     mousePos = [event.clientX, event.clientY]
 });
-
-
-function randomG() { //gaussian
-    var r = 0;
-    var v = 4;
-    for (var i = v; i > 0; i--) {
-        r += Math.random();
-    }
-    return (r / v) * 2 - 1;
-}
 
 
 
@@ -270,56 +324,7 @@ function getRndColor() {
     return 'rgb(' + r + ',' + g + ',' + b + ')';
 }
 
-//fonction qui fait une copie profonde d'un array, parfaitement dupliqué sans ref
-const deepCopyFunction = (inObject) => {
-    let outObject, value, key
 
-    if (typeof inObject !== "object" || inObject === null) {
-        return inObject // Return the value if inObject is not an object
-    }
-
-    // Create an array or object to hold the values
-    outObject = Array.isArray(inObject) ? [] : {}
-
-    for (key in inObject) {
-        value = inObject[key]
-
-        // Recursively (deep) copy for nested objects, including arrays
-        outObject[key] = deepCopyFunction(value)
-    }
-
-    return outObject
-}
-
-//Line to line collision detector modified
-function SensorCollision(x1, y1, x2, y2, x3, y3, x4, y4) {
-
-    // calculate the distance to intersection point
-    let uA = ((x4 - x3) * (y1 - y3) - (y4 - y3) * (x1 - x3)) / ((y4 - y3) * (x2 - x1) - (x4 - x3) * (y2 - y1));
-    let uB = ((x2 - x1) * (y1 - y3) - (y2 - y1) * (x1 - x3)) / ((y4 - y3) * (x2 - x1) - (x4 - x3) * (y2 - y1));
-
-    // if uA and uB are between 0-1, lines are colliding
-    if (uA >= 0 && uA <= 1 && uB >= 0 && uB <= 1) {
-
-        // optionally, draw a circle where the lines meet
-        let intersectionX = x1 + (uA * (x2 - x1));
-        let intersectionY = y1 + (uA * (y2 - y1));
-
-        let dist = Math.sqrt((x1 - intersectionX) * (x1 - intersectionX) + (y1 - intersectionY) * (y1 - intersectionY));
-        //normalize lenght btw 0 and 1
-        dist = dist / (Math.sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2)));
-        //invert, lim -> 1 quand + en + proche du mur
-        dist = 1 - dist;
-
-        return dist;
-    }
-    return 0;
-}
-
-function sort(arr) {
-    const byValueInvert = (a, b) => b[0] - a[0];
-    return arr.sort(byValueInvert);
-}
 
 
 
