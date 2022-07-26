@@ -1,16 +1,16 @@
-
 let nbEntity;
 let geneCollection = [];
+let geneRanking = [];
 let patternLayer = [4, 3, 3, 1];
 
-function SetupNeuroevolutionNetwork(param){
+function SetupNeuroevolutionNetwork(param) {
     nbEntity = param.nbEntity;
     patternLayer = param.pattern;
 
     InitGene();
 }
 
-function InitGene(){
+function InitGene() {
     for (let i = 0; i < nbEntity; i++) {
         geneCollection[i] = getGene();
     }
@@ -41,12 +41,35 @@ function getGene() {
     return gene;
 }
 
-function networkProcesse(input, index){
+function networkProcesse(input, index) {
     var next = input;
     for (let i = 0; i < geneCollection[index].length; i++) {
         next = layer(next, geneCollection[index][i][0], geneCollection[index][i][1])
     }
     return next
+}
+
+function getScoreOfGeneration(arr) {
+    geneRanking = [] //clear
+    for (let i = 0; i < arr.length; i++) {
+        geneRanking.push([deepCopyFunction(arr[i][0]), deepCopyFunction(geneCollection[arr[i][1]])]) //[1] is index of gene, [0] is score; deepcopy to avoid reference bug
+    }
+}
+
+function nextGeneration() {
+    /*
+    1 copi de gene et recuperation des scores associe
+    2 tri en F des scores
+    3 supprimer les plus nuls
+    4 dupli de la moitié + modif
+    */
+
+    //1 fait dans getScoreOfGeneration()
+
+    //2
+    sort(geneRanking)
+
+
 }
 
 //function that multiply 2 matrices 

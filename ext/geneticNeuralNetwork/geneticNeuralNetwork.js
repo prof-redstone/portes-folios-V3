@@ -53,7 +53,7 @@ function loop() {
     if (time % timeGeneation == 0) {
         //end generation, get best gene score, and reproduce to make better generation
         /*
-        1 copi de gene
+        1 copi de gene et recuperation des scores associe
         2 tri en F des scores
         3 supprimer les plus nuls
         4 dupli de la moitié + modif

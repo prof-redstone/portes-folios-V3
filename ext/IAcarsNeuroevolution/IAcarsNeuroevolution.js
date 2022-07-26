@@ -10,8 +10,8 @@ var mousebtndown = false;
 var mousePos = [];
 
 var roadPoint = [];
-var spawnPoint = [undefined, undefined];
-var finishPoint = [undefined, undefined];
+var spawnPoint = [0, 0];
+var finishPoint = [0, 0];
 
 var nbcars = 20;
 var carscollec = [];
@@ -19,7 +19,7 @@ var carscollec = [];
 /*var cars = new car();
 cars.init()*/
 
-var timeGeneration = 500;
+var timeGeneration = 300;
 
 function setup() {
     var canvas = document.getElementById("IAcarsNeuroevolution");
@@ -33,6 +33,7 @@ function setup() {
     for (let i = 0; i < nbcars; i++) {
         carscollec[i] = new car();
         carscollec[i].init(i);
+        carscollec[i].reset();
     }
 
     SetupNeuroevolutionNetwork({
@@ -65,9 +66,9 @@ function loop() {
     ctx.fillStyle = "#0F0";
     ctx.fill();
 
+
     //phase principale
     if (mode == "training") {
-        
 
         for (let i = 0; i < carscollec.length; i++) {
             carscollec[i].sensorsUpdate();
@@ -84,17 +85,31 @@ function loop() {
         cars.collision();
         cars.sensorsUpdate();*/
 
+        
         time++
-
         if (time % timeGeneration == 0) {
+            
+            //newGeneration();
+            let scoreByIndex = []
+            for (let i = 0; i < carscollec.length; i++) {
+                scoreByIndex.push([carscollec[i].getScore(), carscollec[i].geneIndex]);
+            }
+            getScoreOfGeneration(scoreByIndex);
 
-            newGeneration();
-
+            nextGeneration();
+            
             //cars.reset()
             for (let i = 0; i < carscollec.length; i++) {
                 carscollec[i].reset();
             }
         }
+    }
+}
+
+function startSimulation(){
+    mode = "training";
+    for (let i = 0; i < carscollec.length; i++) {
+        carscollec[i].reset()
     }
 }
 
@@ -221,7 +236,8 @@ function car() {
         let distToGoal = Math.sqrt((this.x - finishPoint[0]) * (this.x - finishPoint[0]) + (this.y - finishPoint[1]) * (this.y - finishPoint[1]));
         let distOfStartToGoal = Math.sqrt((spawnPoint[0] - finishPoint[0]) * (spawnPoint[0] - finishPoint[0]) + (spawnPoint[1] - finishPoint[1]) * (spawnPoint[1] - finishPoint[1]));
         let proportionScore = 1;
-        return (distOfStartToGoal - distToGoal) * proportionScore + this.timeAlive;
+        this.score = (distOfStartToGoal - distToGoal) * proportionScore + this.timeAlive;
+        return this.score;
     }
 
 }
@@ -278,7 +294,7 @@ document.addEventListener('keydown', function(event) {
         } else if (event.keyCode == 70) { //f for finish point
             finishPoint = [mousePos[0], mousePos[1]];
         } else if (event.keyCode == 32) { //space to start
-            mode = "training";
+            startSimulation();
         }
     } else if (mode == 'training') {
         if (event.keyCode == 37) { //left for debug
