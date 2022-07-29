@@ -2,6 +2,7 @@ let nbEntity;
 let geneCollection = [];
 let geneRanking = [];
 let patternLayer = [4, 3, 3, 1];
+let activationFunction = "bin"; //"ReLU"
 
 function SetupNeuroevolutionNetwork(param) {
     nbEntity = param.nbEntity;
@@ -68,8 +69,33 @@ function nextGeneration() {
 
     //2
     sort(geneRanking)
+    console.log(geneCollection)
+    geneCollection = [];
 
+    for (let i = 0; i < geneRanking.length/2; i++) {
+        geneCollection.push(geneRanking[i][1]) 
+    }
+    for (let i = 0; i < geneRanking.length/2; i++) {
+        geneCollection.push(geneRanking[i][1]) 
+        mutateGene(geneCollection.length-1)//mutate the last push, (the current one)
+    }
 
+}
+
+function mutateGene(index){
+    for (let i = 0; i < geneCollection[index].length; i++) { // each layer
+        //each weight
+        for (let j = 0; j < geneCollection[index][i][0].length; j++) {
+            for (let k = 0; k < geneCollection[index][i][0][j].length; k++) {
+                geneCollection[index][i][0][j][k] += randomG() / 10;
+            }
+        }
+
+        //each biais
+        for (let j = 0; j < geneCollection[index][i][1].length; j++) {
+            geneCollection[index][i][1][j][0] += randomG() / 10;
+        }
+    }
 }
 
 //function that multiply 2 matrices 
@@ -102,7 +128,32 @@ function addingMatrices(m1, m2) {
 //function that processe a layer by taking inputs, multiply by weights and adding biais
 function layer(inputs, weights, biais) {
     //a layer can be processe with matrices, inputs -> mat col, weight -> matrice rect
-    return addingMatrices(multiplyMatrices(weights, inputs), biais);
+    return activationF(addingMatrices(multiplyMatrices(weights, inputs), biais));
+}
+
+function activationF(mat) {
+    let newMat = [];
+    for (let i = 0; i < mat.length; i++) {
+        if (activationFunction == "ReLU") {
+            let a = mat[i][0];
+            if (a < 0) {
+                a = 0;
+            }
+            newMat[i] = [];
+            newMat[i][0] = a;
+        }
+        if (activationFunction == "bin") {
+            let a = mat[i][0];
+            if (a < 0) {
+                a = 0;
+            } else {
+                a = 1;
+            }
+            newMat[i] = [];
+            newMat[i][0] = a;
+        }
+    }
+    return newMat;
 }
 
 function randomG() { //gaussian

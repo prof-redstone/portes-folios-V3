@@ -38,7 +38,7 @@ function setup() {
 
     SetupNeuroevolutionNetwork({
         nbEntity: nbcars,
-        pattern: [5, 4, 4, 1]
+        pattern: [5, 4, 4, 2]
     })
     setInterval(loop, 30);
 }
@@ -85,10 +85,10 @@ function loop() {
         cars.collision();
         cars.sensorsUpdate();*/
 
-        
+
         time++
         if (time % timeGeneration == 0) {
-            
+
             //newGeneration();
             let scoreByIndex = []
             for (let i = 0; i < carscollec.length; i++) {
@@ -97,7 +97,7 @@ function loop() {
             getScoreOfGeneration(scoreByIndex);
 
             nextGeneration();
-            
+
             //cars.reset()
             for (let i = 0; i < carscollec.length; i++) {
                 carscollec[i].reset();
@@ -106,7 +106,7 @@ function loop() {
     }
 }
 
-function startSimulation(){
+function startSimulation() {
     mode = "training";
     for (let i = 0; i < carscollec.length; i++) {
         carscollec[i].reset()
@@ -128,9 +128,10 @@ function car() {
     this.speed;
     this.speedRot;
     this.sensorsAngle = []; //angle btw sensors and orientation, + indicate nb of sensor
-
+    
     // output
     this.turn; //-1 left, 0 forward, 1 right
+    this.move; //move forward or not
 
     //input
     this.sensors = []; //the value of sensors
@@ -148,7 +149,7 @@ function car() {
 
     this.reset = function() {
         this.alive = true;
-        this.x = spawnPoint[0] + nb_random(0,100);
+        this.x = spawnPoint[0];
         this.y = spawnPoint[1];
         this.angle = 0;
         this.score = 0;
@@ -157,9 +158,9 @@ function car() {
 
     this.update = function() {
         if (this.alive) {
-            this.x += this.speed * Math.cos(this.angle)
-            this.y += this.speed * Math.sin(this.angle)
-            this.angle += this.turn * this.speedRot
+            this.x += this.move * this.speed * Math.cos(this.angle)
+            this.y += this.move * this.speed * Math.sin(this.angle)
+            this.angle += (this.turn - 0.5) * this.speedRot
             this.timeAlive++;
         }
     }
@@ -225,17 +226,20 @@ function car() {
             [this.sensors[1]],
             [this.sensors[2]],
             [this.sensors[3]],
-            [this.sensors[4]]
+            [this.sensors[4]],
+            [Math.sqrt((this.x - finishPoint[0]) * (this.x - finishPoint[0]) + (this.y - finishPoint[1]) * (this.y - finishPoint[1]))/100] //distance to goal
         ]
         //console.log(this.sensors[2])
         let output = networkProcesse(input, this.geneIndex);
+
         this.turn = output[0][0];
+        this.move = output[1][0];
     }
 
     this.getScore = function() {
         let distToGoal = Math.sqrt((this.x - finishPoint[0]) * (this.x - finishPoint[0]) + (this.y - finishPoint[1]) * (this.y - finishPoint[1]));
         let distOfStartToGoal = Math.sqrt((spawnPoint[0] - finishPoint[0]) * (spawnPoint[0] - finishPoint[0]) + (spawnPoint[1] - finishPoint[1]) * (spawnPoint[1] - finishPoint[1]));
-        let proportionScore = 1;
+        let proportionScore = 10;
         this.score = (distOfStartToGoal - distToGoal) * proportionScore + this.timeAlive;
         return this.score;
     }
