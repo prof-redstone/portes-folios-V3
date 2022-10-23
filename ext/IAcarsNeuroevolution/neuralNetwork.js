@@ -3,6 +3,7 @@ let geneCollection = [];
 let geneRanking = [];
 let patternLayer = [4, 3, 3, 1];
 let activationFunction = "bin"; //"ReLU"
+let geneMutProb = 10; //10%
 
 function SetupNeuroevolutionNetwork(param) {
     nbEntity = param.nbEntity;
@@ -69,16 +70,20 @@ function nextGeneration() {
 
     //2
     sort(geneRanking)
-    console.log(geneCollection)
     geneCollection = [];
+    //console.log(geneRanking)
 
     for (let i = 0; i < geneRanking.length/2; i++) {
-        geneCollection.push(geneRanking[i][1]) 
+        geneCollection.push(deepCopyFunction(geneRanking[i][1])) 
+    }
+    //console.log(geneCollection)
+    for (let i = 0; i < geneRanking.length/2; i++) {
+        geneCollection.push(deepCopyFunction(geneRanking[i][1])) 
     }
     for (let i = 0; i < geneRanking.length/2; i++) {
-        geneCollection.push(geneRanking[i][1]) 
-        mutateGene(geneCollection.length-1)//mutate the last push, (the current one)
+        mutateGene(geneRanking.length/2 + i)//mutate the last push, (the current one)
     }
+    //console.log(geneCollection)
 
 }
 
@@ -87,13 +92,18 @@ function mutateGene(index){
         //each weight
         for (let j = 0; j < geneCollection[index][i][0].length; j++) {
             for (let k = 0; k < geneCollection[index][i][0][j].length; k++) {
-                geneCollection[index][i][0][j][k] += randomG() / 10;
+                //console.log(geneCollection[index][i][0][j][k])
+                if(geneMutProb >= nb_random(0,100)){
+                    geneCollection[index][i][0][j][k] += randomG() / 10;
+                }
             }
         }
 
         //each biais
         for (let j = 0; j < geneCollection[index][i][1].length; j++) {
-            geneCollection[index][i][1][j][0] += randomG() / 10;
+            if(geneMutProb >= nb_random(0,100)){
+                geneCollection[index][i][1][j][0] += randomG() / 10;
+            }
         }
     }
 }

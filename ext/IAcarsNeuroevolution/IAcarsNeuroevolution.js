@@ -13,13 +13,13 @@ var roadPoint = [];
 var spawnPoint = [0, 0];
 var finishPoint = [0, 0];
 
-var nbcars = 20;
+var nbcars = 100;
 var carscollec = [];
 //for debugging
 /*var cars = new car();
 cars.init()*/
 
-var timeGeneration = 300;
+var timeGeneration = 600;
 
 function setup() {
     var canvas = document.getElementById("IAcarsNeuroevolution");
@@ -38,7 +38,7 @@ function setup() {
 
     SetupNeuroevolutionNetwork({
         nbEntity: nbcars,
-        pattern: [5, 4, 4, 2]
+        pattern: [5, 5, 5, 3]
     })
     setInterval(loop, 30);
 }
@@ -90,7 +90,7 @@ function loop() {
         if (time % timeGeneration == 0) {
 
             //newGeneration();
-            let scoreByIndex = []
+            var scoreByIndex = []
             for (let i = 0; i < carscollec.length; i++) {
                 scoreByIndex.push([carscollec[i].getScore(), carscollec[i].geneIndex]);
             }
@@ -232,8 +232,15 @@ function car() {
         //console.log(this.sensors[2])
         let output = networkProcesse(input, this.geneIndex);
 
-        this.turn = output[0][0];
-        this.move = output[1][0];
+        this.move = output[0][0];
+
+        this.turn = 0;
+        if (output[1][0] > 0.5) {
+            this.turn += 1
+        }
+        if (output[2][0] > 0.5) {
+            this.turn += -1
+        }
     }
 
     this.getScore = function() {
@@ -298,7 +305,10 @@ document.addEventListener('keydown', function(event) {
         } else if (event.keyCode == 70) { //f for finish point
             finishPoint = [mousePos[0], mousePos[1]];
         } else if (event.keyCode == 32) { //space to start
+            time = 0;
             startSimulation();
+        } else if (event.keyCode == 8) { //backspace to reset road
+            roadPoint = [];
         }
     } else if (mode == 'training') {
         if (event.keyCode == 37) { //left for debug
