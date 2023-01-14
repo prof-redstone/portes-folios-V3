@@ -12,6 +12,10 @@ var obtuBF1 = []
 var aigusBF2 = []
 var obtuBF2 = []
 
+var frstCol = "#1E5959";
+var scndCol = "#3B8C6E";
+var strkCol = "#BBB";
+
 
 
 function setup() {
@@ -23,8 +27,10 @@ function setup() {
 
     ctx.fillStyle = "#111"
     ctx.strokeStyle = "#000"
-
+    ctx.LineWidth = 30;
     initTriangle();
+    loop();
+    loop();
     loop();
     loop();
     loop();
@@ -171,39 +177,67 @@ function getObtu(tri) {
 
 function draw() {
     if (bufferIndex == 1) {
+        ctx.fillStyle = frstCol;
         for (let i = 0; i < aigusBF1.length; i++) {
+            ctx.beginPath();
+            ctx.strokeStyle = frstCol;
+            ctx.moveTo(aigusBF1[i][0][0], aigusBF1[i][0][1]);
+            ctx.lineTo(aigusBF1[i][2][0], aigusBF1[i][2][1]);
+            ctx.stroke();
+            ctx.strokeStyle = strkCol;
             ctx.beginPath();
             ctx.moveTo(aigusBF1[i][0][0], aigusBF1[i][0][1]);
             ctx.lineTo(aigusBF1[i][1][0], aigusBF1[i][1][1]);
             ctx.lineTo(aigusBF1[i][2][0], aigusBF1[i][2][1]);
-            //ctx.lineTo(aigusBF1[i][0][0], aigusBF1[i][0][1]);
-            ctx.stroke()
+            ctx.stroke();
+            ctx.fill();
         }
+        ctx.fillStyle = scndCol;
         for (let i = 0; i < obtuBF1.length; i++) {
+            ctx.beginPath();
+            ctx.strokeStyle = scndCol;
+            ctx.moveTo(obtuBF1[i][0][0], obtuBF1[i][0][1]);
+            ctx.lineTo(obtuBF1[i][2][0], obtuBF1[i][2][1]);
+            ctx.stroke();
+            ctx.strokeStyle = strkCol;
             ctx.beginPath();
             ctx.moveTo(obtuBF1[i][0][0], obtuBF1[i][0][1]);
             ctx.lineTo(obtuBF1[i][1][0], obtuBF1[i][1][1]);
             ctx.lineTo(obtuBF1[i][2][0], obtuBF1[i][2][1]);
-            //ctx.lineTo(obtuBF1[i][0][0], obtuBF1[i][0][1]);
-            ctx.stroke()
+            ctx.stroke();
+            ctx.fill();
         }
     }
     if (bufferIndex == 2) {
+        ctx.fillStyle = frstCol;
         for (let i = 0; i < aigusBF2.length; i++) {
+            ctx.beginPath();
+            ctx.strokeStyle = frstCol;
+            ctx.moveTo(aigusBF2[i][0][0], aigusBF2[i][0][1]);
+            ctx.lineTo(aigusBF2[i][2][0], aigusBF2[i][2][1]);
+            ctx.stroke();
+            ctx.strokeStyle = strkCol;
             ctx.beginPath();
             ctx.moveTo(aigusBF2[i][0][0], aigusBF2[i][0][1]);
             ctx.lineTo(aigusBF2[i][1][0], aigusBF2[i][1][1]);
             ctx.lineTo(aigusBF2[i][2][0], aigusBF2[i][2][1]);
-            //ctx.lineTo(aigusBF2[i][0][0], aigusBF2[i][0][1]);
-            ctx.stroke()
+            ctx.stroke();
+            ctx.fill();
         }
+        ctx.fillStyle = scndCol;
         for (let i = 0; i < obtuBF2.length; i++) {
+            ctx.beginPath();
+            ctx.strokeStyle = scndCol;
+            ctx.moveTo(obtuBF2[i][0][0], obtuBF2[i][0][1]);
+            ctx.lineTo(obtuBF2[i][2][0], obtuBF2[i][2][1]);
+            ctx.stroke();
+            ctx.strokeStyle = strkCol;
             ctx.beginPath();
             ctx.moveTo(obtuBF2[i][0][0], obtuBF2[i][0][1]);
             ctx.lineTo(obtuBF2[i][1][0], obtuBF2[i][1][1]);
             ctx.lineTo(obtuBF2[i][2][0], obtuBF2[i][2][1]);
-            //ctx.lineTo(obtuBF2[i][0][0], obtuBF2[i][0][1]);
-            ctx.stroke()
+            ctx.stroke();
+            ctx.fill();
         }
     }
 }
