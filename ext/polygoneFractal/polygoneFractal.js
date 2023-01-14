@@ -1,28 +1,23 @@
-console.log("oui")
-
 var listePoints = [];
-var nbPoints = 4;
+var nbPoints = 3;
 var size = 400;
 
 var pos;
 var loopPerFrame = 1000;
 var lastPoint = 0;
-var changePoint = true
+var changePoint = false;
+var fractalType = 2;
 
 function setup() {
     createCanvas(2*size, 2*size);
-    pos = createVector(0, 0);
     strokeWeight(1);
-    for (var i = 0; i < nbPoints; i++) {
-        listePoints[i] = createVector(cos(i * ((2 * PI) / nbPoints)), sin(i * ((2 * PI) / nbPoints)));
-    }
+    resetAndChange();
 }
 
 function draw() {
     translate(width / 2, height / 2);
     rotate(-PI/2)
     for (let i = 0; i < loopPerFrame; i++) {
-        var last = pos;
         var point;
         do {
             point = floor(random(0, nbPoints));
@@ -36,4 +31,40 @@ function draw() {
 function drawPoint(p) {
     //console.log(p)
     line(floor(p.x * size), floor(p.y * size), floor(p.x * size) + 1, floor(p.y * size) + 1);
+}
+
+function resetAndChange(){
+    clear();
+        
+    if(fractalType == 0){
+        changePoint = false;
+        nbPoints = 3;
+    }
+    if(fractalType == 1){
+        changePoint = true;
+        nbPoints = 4;
+    }
+    if(fractalType == 2){
+        changePoint = true;
+        nbPoints = 5;
+    }
+    if(fractalType == 3){
+        changePoint = true;
+        nbPoints = 6;
+    }
+
+    
+    listePoints = [];
+    pos = createVector(0, 0);
+
+    for (var i = 0; i < nbPoints; i++) {
+        listePoints[i] = createVector(cos(i * ((2 * PI) / nbPoints)), sin(i * ((2 * PI) / nbPoints)));
+    }
+
+    
+
+    fractalType++;
+    fractalType%=4;
+
+    setTimeout(resetAndChange, 5000);
 }
