@@ -1,3 +1,5 @@
+info();
+console.log("input info() for further information");
 var canvas;
 var ctx;
 var H;
@@ -15,11 +17,9 @@ var finishPoint = [0, 0];
 
 var nbcars = 100;
 var carscollec = [];
-//for debugging
-/*var cars = new car();
-cars.init()*/
 
-var timeGeneration = 600;
+var maxTimeGeneration = 600;
+var thisGenerationTime = 0;
 
 function setup() {
     var canvas = document.getElementById("IAcarsNeuroevolution");
@@ -80,15 +80,11 @@ function loop() {
             carscollec[i].render();
         }
 
-        /*cars.render();
-        cars.update();
-        cars.collision();
-        cars.sensorsUpdate();*/
-
 
         time++
-        if (time % timeGeneration == 0) {
-
+        thisGenerationTime++
+        if (thisGenerationTime >= maxTimeGeneration) {//to make the new generation
+            thisGenerationTime = 0;
             //newGeneration();
             var scoreByIndex = []
             for (let i = 0; i < carscollec.length; i++) {
@@ -311,10 +307,12 @@ document.addEventListener('keydown', function(event) {
             roadPoint = [];
         }
     } else if (mode == 'training') {
-        if (event.keyCode == 37) { //left for debug
-            cars.turn = -1
-        } else if (event.keyCode == 39) { //right for debug
-            cars.turn = 1
+        if (event.keyCode == 37) { //left to decrease thisTimeGeneration 
+            maxTimeGeneration -= 100;
+            console.log("MaxTimeGeneration : ", maxTimeGeneration);
+        } else if (event.keyCode == 39) { //right to increase thisTimeGeneration 
+            maxTimeGeneration += 100;
+            console.log("MaxTimeGeneration : ", maxTimeGeneration);
         } else if (event.keyCode == 32) { //space to start
             mode = "road";
         }
@@ -323,15 +321,7 @@ document.addEventListener('keydown', function(event) {
 
 document.addEventListener('keyup', function(event) {
     if (mode == 'training') {
-        if (event.keyCode == 37) { //left for debug
-            if (cars.turn == -1) {
-                cars.turn = 0
-            }
-        } else if (event.keyCode == 39) { //right for debug
-            if (cars.turn == 1) {
-                cars.turn = 0
-            }
-        }
+        
     }
 });
 
@@ -355,7 +345,11 @@ function getRndColor() {
 }
 
 
-
+function info(){
+    console.log("Press right-click to place wall, 's' to place spawn point, 'f' for the end of track, then presse 'space' to start simulation.")
+    console.log("Make sure to close path of wall to prevent car exhaust");
+    console.log("During the car training, press left-arrow to decrease the time for each generation, and right-arrow to increase it.")
+}
 
 
 setup()
