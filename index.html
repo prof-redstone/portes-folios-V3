@@ -70,62 +70,93 @@
 
                 <div id="page2" style="width: 100vw;">
                     <div>
-                        <canvas id="GameOfLife" style="z-index: 0; position: absolute;"></canvas>
+                        <canvas id="ClockBackground" style="z-index: 0; position: absolute;"></canvas>
                     </div>
                 </div>
 
                 <div id="page3" style="width: 100vw;">
                     <div>
-                        <canvas id="ClockBackground" style="z-index: 0; position: absolute;"></canvas>
-                    </div>
-                </div>
-
-                <div id="page4" style="width: 100vw;">
-                    <div>
                         <canvas id="Matrix" style="z-index: 0; position: absolute;"></canvas>
                     </div>
                 </div>
 
-                <div id="page5" style="width: 100vw;">
+                <div id="page4" style="width: 100vw;">
+                    <!--LA PAGE POUR LES FRACTALS ET TILING-->
                     <div class="grand-text-S2" style="position: absolute; color: #dfdfdf; z-index: 1; display: flex; width: 100vw;  align-items: center;">
                         <div style="width: 100vw; height: 100vh; display: flex; flex-direction: column; align-items: center;">
                             <div style=" margin: clamp(10px,5vh,20px) 0 clamp(10px,5vh,20px) 0;">
-                                <h1 id="moreHereText" class="rainbowColor">And more here :</h1>
+                                <h1 id="moreHereText" class="rainbowColor">Fractal and Tiling here :</h1>
                             </div>
                             <div>
-                                <div id="linkContainer">
-                                    <div class="divA">
-                                        <a href="ext/neuron_web/index.html" class="glitchEffect">Neuron_web</a>
-                                    </div>
-                                    <div class="divA">
-                                        <a href="ext/jeu-1_V2/index.html" class="glitchEffect">Snake like</a>
-                                    </div>
-                                    <div class="divA">
-                                        <a href="ext/matrixFullScreen/index.html" class="glitchEffect">Matrix</a>
-                                    </div>
-                                    <div class="divA">
-                                        <a href="ext/snow flake/index.html" class="glitchEffect">Snow-flake</a>
-                                    </div>
+                                <div class="linkContainer">
                                     <div class="divA">
                                         <a href="ext/fractal_tree/index.html" class="glitchEffect">Fractale tree</a>
+                                    </div>
+                                    <div class="divA">
+                                        <a href="ext/AngleFlower/index.html" class="glitchEffect">Spining fractal</a>
+                                    </div>
+                                    <div class="divA">
+                                        <a href="ext/fractalGen/index.html" class="glitchEffect">Flocon de Koch fractal</a>
+                                    </div>
+                                    <div class="divA">
+                                        <a href="p5js/polygoneFractal/index.html" class="glitchEffect">Dot Fractral</a>
+                                    </div>
+                                    <div class="divA">
+                                        <a href="ext/DragonCurve/index.html" class="glitchEffect">dragon curve</a>
+                                    </div>
+                                    <div class="divA">
+                                        <a href="ext/ScreenFractal/index.html" class="glitchEffect">screen in screen fractal</a>
+                                    </div>
+                                    <div class="divA">
+                                        <a href="ext/LorenzAttractor/index.html" class="glitchEffect">Lorenz Attractor</a>
+                                    </div>
+                                    <div class="divA">
+                                        <a href="ext/tiling/index.html" class="glitchEffect">random tiling</a>
+                                    </div>
+                                    <div class="divA">
+                                        <a href="ext/growingCircle/index.html" class="glitchEffect">GrowingCircle</a>
+                                    </div>
+                                    <div class="divA">
+                                        <a href="ext/penroseTiling/index.html" class="glitchEffect">Penrose tilling</a>
+                                    </div>
+                                    <div class="divA">
+                                        <a href="p5js/pavageFlower/index.html" class="glitchEffect">Pavage fleur</a>
+                                    </div>
+                                    <div class="divA">
+                                        <a href="p5js/pavageKite/index.html" class="glitchEffect">Pavage kite</a>
+                                    </div>
+                                    <div class="divA">
+                                        <a href="p5js/pavageTriangle/index.html" class="glitchEffect">Pavage triangle</a>
+                                    </div>
+                                    <div class="divA">
+                                        <a href="p5js/pavageHex/index.html" class="glitchEffect">Hex pavage</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <canvas id="tilingCanvas" style="z-index: 0; position: absolute;"></canvas>
+                    </div>
+                </div>
+
+                <div id="page5" style="width: 100vw;">
+                    <!--AI and physic model -->
+                    <div class="grand-text-S2" style="position: absolute; color: #dfdfdf; z-index: 1; display: flex; width: 100vw;  align-items: center;">
+                        <div style="width: 100vw; height: 100vh; display: flex; flex-direction: column; align-items: center;">
+                            <div style=" margin: clamp(10px,5vh,20px) 0 clamp(10px,5vh,20px) 0;">
+                                <h1 id="moreHereText" class="rainbowColor">AI and physic model :</h1>
+                            </div>
+                            <div>
+                                <div class="linkContainer">
+                                    <div class="divA">
+                                        <a href="ext/jeu-1_V2/index.html" class="glitchEffect">Nokia game</a>
                                     </div>
                                     <div class="divA">
                                         <a href="ext/GameOfLife/index.html" class="glitchEffect">Game of life</a>
                                     </div>
                                     <div class="divA">
-                                        <a href="ext/MagicWand/index.html" class="glitchEffect">MagicWand</a>
-                                    </div>
-                                    <div class="divA">
                                         <a href="ext/environment_projectV2/index.html" class="glitchEffect">Environment-game</a>
-                                    </div>
-                                    <div class="divA">
-                                        <a href="ext/MatrixWand/MatrixWand.html" class="glitchEffect">MatrixWand</a>
-                                    </div>
-                                    <div class="divA">
-                                        <a href="ext/DVDanimation/DVDanimation.html" class="glitchEffect">DVD animation</a>
-                                    </div>
-                                    <div class="divA">
-                                        <a href="ext/ClockBackground/ClockBackground.html" class="glitchEffect">Clock background</a>
                                     </div>
                                     <div class="divA">
                                         <a href="ext/hexagonalGride/index.html" class="glitchEffect">Hexagonal game of life</a>
@@ -134,40 +165,13 @@
                                         <a href="ext/ClickMe/index.html" class="glitchEffect">Click me ...</a>
                                     </div>
                                     <div class="divA">
-                                        <a href="ext/rainAndFlower/index.html" class="glitchEffect">Weather effect</a>
-                                    </div>
-                                    <div class="divA">
                                         <a href="ext/grassSimulation/index.html" class="glitchEffect">Grass simulation</a>
-                                    </div>
-                                    <div class="divA">
-                                        <a href="ext/tiling/index.html" class="glitchEffect">Tiling</a>
-                                    </div>
-                                    <div class="divA">
-                                        <a href="ext/inverted/index.html" class="glitchEffect">Inverted</a>
-                                    </div>
-                                    <div class="divA">
-                                        <a href="ext/growingCircle/index.html" class="glitchEffect">GrowingCircle</a>
                                     </div>
                                     <div class="divA">
                                         <a href="ext/DinoGame/index.html" class="glitchEffect">Dino Game</a>
                                     </div>
                                     <div class="divA">
-                                        <a href="ext/fourure/index.html" class="glitchEffect">Fourure</a>
-                                    </div>
-                                    <div class="divA">
-                                        <a href="ext/AngleFlower/index.html" class="glitchEffect">Spining fractal</a>
-                                    </div>
-                                    <div class="divA">
-                                        <a href="ext/dotBackground/index.html" class="glitchEffect">Dot background</a>
-                                    </div>
-                                    <div class="divA">
-                                        <a href="ext/fractalGen/index.html" class="glitchEffect">Flocon de Koch fractal</a>
-                                    </div>
-                                    <div class="divA">
                                         <a href="ext/geneticNeuralNetwork/index.html" class="glitchEffect">Deep-Learning flappy bird</a>
-                                    </div>
-                                    <div class="divA">
-                                        <a href="ext/growingCircle/index.html" class="glitchEffect">Circle breath</a>
                                     </div>
                                     <div class="divA">
                                         <a href="ext/IAcarsNeuroevolution/IAcarsNeuroevolution.html" class="glitchEffect">Deep-Learning car</a>
@@ -175,24 +179,12 @@
                                     <div class="divA">
                                         <a href="ext/islandGenerator/index.html" class="glitchEffect">Island map generator</a>
                                     </div>
-                                    <div class="divA">
-                                        <a href="ext/penroseTiling/index.html" class="glitchEffect">Penrose tilling</a>
-                                    </div>
-                                    <div class="divA">
-                                        <a href="ext/polygoneFractal/index.html" class="glitchEffect">Dot fractal</a>
-                                    </div>
-                                    <div class="divA">
-                                        <a href="ext/rotatingSpiral/index.html" class="glitchEffect">Snail shell animation</a>
-                                    </div>
-                                    <div class="divA">
-                                        <a href="ext/tiling/index.html" class="glitchEffect">Random tiling</a>
-                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div>
-                        <canvas id="MagicWand" style="z-index: 0; position: absolute;"></canvas>
+                        <canvas id="GameOfLife" style="z-index: 0; position: absolute;"></canvas>
                     </div>
                 </div>
 
@@ -318,7 +310,7 @@
 <script src="canvasScript/gameOfLife.js"></script>
 <script src="canvasScript/clockBackground.js"></script>
 <script src="canvasScript/matrix.js"></script>
-<script src="canvasScript/magicWand.js"></script>
+<script src="canvasScript/tiling.js"></script>
 <script>
     document.querySelector('[style*="text-align: right;position: fixed;z-index:9999999"]').style.visibility = "hidden";
 </script>

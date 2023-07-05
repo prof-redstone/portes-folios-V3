@@ -190,4 +190,10 @@ function nb_random(min, max) { //fonction générant un nombre aléatoire entier
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+document.addEventListener('keypress', function(event) {
+    if (event.keyCode == 38 || event.code == "Space") {
+        change();
+    }
+});
+
 setup()

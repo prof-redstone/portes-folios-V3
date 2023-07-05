@@ -1,3 +1,6 @@
+
+//POUR PAGE 1
+
 //underscore animation blinking
 let blinkState = 1;
 let i = setInterval(() => {
@@ -69,10 +72,10 @@ function nb_random(min, max) { //fonction générant un nombre aléatoire entier
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+//FIN PAGE 1
 
+//les pages principales du site
 document.getElementById("main").onscroll = function() { 
-    //console.log(document.getElementById("main").scrollTop);
-    //console.log(document.getElementById("main").clientHeight)
 
     var main = document.getElementById("main");
     if(Math.round(main.scrollTop) == 0 * main.clientHeight){
@@ -97,40 +100,35 @@ document.getElementById("main").onscroll = function() {
 }
 
 
-//Page 2 part 1
+//PAGE 2
 var HScrollProject = 0
 const HScrollProjectMax = 4
 function UpdateScrollP2(param = 0){ //pour arreter et démarer les annimations en fonction du scroll et de l'affichage pour la page 2 
     if(param == 0){//nomal, active et stop les animation en fonction de ce qui est affiché 
         try {
+            grassSimulationCanvas.StopGrassSimulation()
+            GameOfLifeCanvas.Stop()
+            ClockBackgroundCanvas.Stop()
+            matrixCanvas.Stop()
+
             if (HScrollProject == 0) {
                 grassSimulationCanvas.StartGrassSimulation()
-            }else{
-                grassSimulationCanvas.StopGrassSimulation()
             }
         
             if (HScrollProject == 1) {
-                GameOfLifeCanvas.Start()
-            }else{
-                GameOfLifeCanvas.Stop()
+                ClockBackgroundCanvas.Start()
             }
         
             if (HScrollProject == 2) {
-                ClockBackgroundCanvas.Start()
-            }else{
-                ClockBackgroundCanvas.Stop()
+                matrixCanvas.Start()
             }
         
             if (HScrollProject == 3) {
-                matrixCanvas.Start()
-            }else{
-                matrixCanvas.Stop()
+                //rien (y'a pas de loop)
             }
         
-            if (HScrollProject == 4) {
-                magicWandCanvas.Start()
-            }else{
-                magicWandCanvas.Stop()
+            if (HScrollProject == 4) {//no loop
+                GameOfLifeCanvas.Start()
             }
     
         } catch (error) {
@@ -143,7 +141,7 @@ function UpdateScrollP2(param = 0){ //pour arreter et démarer les annimations e
             GameOfLifeCanvas.Stop()
             ClockBackgroundCanvas.Stop()
             matrixCanvas.Stop()
-            magicWandCanvas.Stop()
+            //magicWandCanvas.Stop()
         } catch (error) {
             console.error(error)
         }
