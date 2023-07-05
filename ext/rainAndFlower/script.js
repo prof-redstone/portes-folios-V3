@@ -155,7 +155,7 @@ function ColorTrans(c1, c2, value) {
     }
 }
 
-function colorChange(hue, saturation, darkness, alpha) {
+function HSLtoRGB(hue, saturation, darkness, alpha) {
     /*
     hue :
     0 : red; 1 : yellow; 2 : green; 3 : cyan; 4 : blue; 5 : purple; 6 : red

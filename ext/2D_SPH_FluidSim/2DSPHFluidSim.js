@@ -4,7 +4,7 @@ var w;
 var h;
 
 const grv = 50; // gravity const
-const dlt = 0.005; //delta time btw each frame
+const dlt = 0.003; //delta time btw each frame
 const zoom = 10; //change factor btw speed and position, incresed it to go faster
 
 var nbParticle = 200;
@@ -129,8 +129,8 @@ function Particle(ind) {
         if(this.sy > maxSpeed) this.sy = maxSpeed;
         if(this.sy < -maxSpeed) this.sy = -maxSpeed;
 
-        this.sx *= 0.98
-        this.sy *= 0.98
+        this.sx *= 0.995
+        this.sy *= 0.995
     }
     this.UPos = function() {
         this.x += this.sx * zoom * dlt;
