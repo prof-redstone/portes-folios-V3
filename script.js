@@ -102,33 +102,34 @@ document.getElementById("main").onscroll = function() {
 
 //PAGE 2
 var HScrollProject = 0
-const HScrollProjectMax = 4
+const HScrollProjectMax = 3
 function UpdateScrollP2(param = 0){ //pour arreter et démarer les annimations en fonction du scroll et de l'affichage pour la page 2 
     if(param == 0){//nomal, active et stop les animation en fonction de ce qui est affiché 
         try {
             grassSimulationCanvas.StopGrassSimulation()
             GameOfLifeCanvas.Stop()
-            ClockBackgroundCanvas.Stop()
             matrixCanvas.Stop()
+            tilingCanvas.Stop()
 
             if (HScrollProject == 0) {
                 grassSimulationCanvas.StartGrassSimulation()
             }
         
             if (HScrollProject == 1) {
-                ClockBackgroundCanvas.Start()
+                tilingCanvas.Start()
             }
         
             if (HScrollProject == 2) {
-                matrixCanvas.Start()
+                GameOfLifeCanvas.Start()
             }
         
             if (HScrollProject == 3) {
-                //rien (y'a pas de loop)
+                matrixCanvas.Start()
+                
             }
         
             if (HScrollProject == 4) {//no loop
-                GameOfLifeCanvas.Start()
+                
             }
     
         } catch (error) {
@@ -139,7 +140,6 @@ function UpdateScrollP2(param = 0){ //pour arreter et démarer les annimations e
         try {
             grassSimulationCanvas.StopGrassSimulation()
             GameOfLifeCanvas.Stop()
-            ClockBackgroundCanvas.Stop()
             matrixCanvas.Stop()
             //magicWandCanvas.Stop()
         } catch (error) {

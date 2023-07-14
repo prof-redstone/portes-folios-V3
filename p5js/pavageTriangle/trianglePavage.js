@@ -18,7 +18,7 @@ function setup() {
     H = windowHeight;
 
     stroke(200);
-    strokeWeight(2);
+    strokeWeight(1);
     //noStroke()
     //colorMode(HSB);
 }
@@ -64,7 +64,7 @@ function col(i, j) {
     }
 
 
-    let col = HSLtoRGB(floor(res) * (time / 25 - sqrt(distX * distX + distY * distY)*0.002) + 2.3, 10, (noise(i / 0.1, j / 0.1, time / 100)) * 30)
+    let col = HSLtoRGB(floor(res) * (time / 25 - sqrt(distX * distX + distY * distY)*0.002) + 2.3, 10, (noise(i / 0.1, j / 0.1, time / 100)) * 40)
     //let col = HSLtoRGB(2.3, 0, res * 50)
     //10 + (noise(i/10, j/10, time/100)-0.5)*10
     fill(col[0], col[1], col[2])

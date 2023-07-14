@@ -5,6 +5,8 @@ var tableau = []
 var taille = 40 // taille ds cases
 var lastCase = [0, 0] // postition de la souris 
 var PI = Math.PI;
+var time = 0;
+
 //pour tout mettre en place
 function setup() {
     canvas = document.getElementById("tilingCanvas");
@@ -13,29 +15,24 @@ function setup() {
     ctx.canvas.height = window.innerHeight;
     ctx.fillStyle = "#0F1E3D";
     ctx.strokeStyle = "#897E58";
-    var W = taille;
-    var H = taille;
 
     for (let i = 0; i < window.innerWidth / taille; i++) {
         tableau[i] = []
-        for (let j = 0; j < window.innerHeight / taille; j++) {
+        for (let j = 0; j < window.innerHeight / taille +1; j++) {
             tableau[i][j] = nb_random(0, 1);
         }
     }
-    intervalTime = setInterval(loop, 100);
+    intervalTime = setInterval(loop, 50);
 }
 //boucle d'affichage
 function loop() {
     ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height)
     for (let i = 0; i < tableau.length; i++) {
         for (let j = 0; j < tableau[i].length; j++) {
-
-            drawTile(i * taille, j * taille, taille, tableau[i][j]);
-
-
-
+            drawTile(i * taille , (j * taille + time)%(Math.ceil(ctx.canvas.height/taille)*taille + taille) - taille, taille, tableau[i][j]);
         }
     }
+    time++
 }
 
 function drawTile(x, y, w, t) {
@@ -73,29 +70,7 @@ function drawTile(x, y, w, t) {
 
     }
 
-
-    // if (t == 0) {
-    //     ctx.beginPath()
-    //     ctx.moveTo(x, y)
-    //     ctx.lineTo(x + taille, y + taille)
-    //     ctx.stroke()
-    // }
-    // if (t == 1) {
-    //     ctx.beginPath()
-    //     ctx.moveTo(x + taille, y)
-    //     ctx.lineTo(x, y + taille)
-    //     ctx.stroke()
-    // }
 }
-
-
-
-
-
-
-
-
-
 
 
 //changer la case au survole de la souris

@@ -208,15 +208,15 @@ a:visited {
 
 .linkContainer {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
     /*border: 2px solid white;*/
     width: 80vw;
     max-width: 1100px;
-    border-radius: 5px;
+    border-radius: 10px;
     background-color: rgba(17, 17, 17, 0.76);
     line-height: clamp(0.3em, 4vh, 4em);
     gap: 10px;
-    padding: 5px;
+    padding: 15px;
 }
 
 .glitchEffect {
@@ -237,13 +237,13 @@ a:visited {
 .glitchEffect:before {
     content: "";
     position: absolute;
-    bottom: -2px;
+    bottom: -6px;
     left: -2px;
     border-radius: 2px;
     transition: all 0.3s ease-in-out;
-    background: #c848cf;
+    background: #3776dc;
     width: 0%;
-    height: 3px;
+    height: 5px;
 }
 
 .glitchEffect:hover:before {

@@ -78,7 +78,7 @@ class particleRaF {
         this.flowerSpeed = nb_random(50, 100) / 20;
         this.flowerSize = nb_random(40, 120) / 4
         this.flowerLength = -35
-        this.flowerColor1 = colorChange((nb_random(0, 60) / 10), nb_random(40, 50), nb_random(5, 15), nb_random(80,100)/100);
+        this.flowerColor1 = HSLtoRGB((nb_random(0, 60) / 10), nb_random(40, 50), nb_random(5, 15), nb_random(80,100)/100);
         this.flowerColor2 = this.flowerColor1; //the same color for no gradient
 
         this.actuSpeed = this.speed;
