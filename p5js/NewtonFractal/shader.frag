@@ -41,7 +41,6 @@ vec3 color(vec2 p){
     float d2;
     float d3;
 
-
     for(int i = 0; i < maxIt; i++){
         if(dist < distmin) {
             if(d1 <= d2 && d1 <= d3){ return vec3(1.0,0.0,0.0);}
