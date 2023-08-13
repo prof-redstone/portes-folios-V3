@@ -10,14 +10,15 @@ function setup() {
     let size = min(windowWidth, windowHeight);
     createCanvas(windowWidth, windowHeight, WEBGL);
     frameRate(60)
-    pixelDensity(1);
+    pixelDensity(2);
 }
 
 function draw() {
 
     myShader.setUniform('resolution', [width, height]);
-    myShader.setUniform('mouse', [map(mouseX, 0, width, 0, 1), map(mouseY, 0, height, 0, 1)]);
+    myShader.setUniform('imouse', [map(mouseX, 0, width, 0, 1), map(height-mouseY, 0, height, 0, 1)]);
     myShader.setUniform('time', millis() / 1000.0);
+    myShader.setUniform('izoom', 1);
 
 
     shader(myShader);
