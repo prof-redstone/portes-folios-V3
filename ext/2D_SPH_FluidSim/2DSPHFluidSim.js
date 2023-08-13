@@ -3,8 +3,8 @@ var ctx;
 var w;
 var h;
 
-const grv = 50; // gravity const
-const dlt = 0.003; //delta time btw each frame
+const grv = 100; // gravity const
+const dlt = 0.001; //delta time btw each frame
 const zoom = 10; //change factor btw speed and position, incresed it to go faster
 
 var nbParticle = 200;
@@ -31,7 +31,7 @@ function setup() { //fonction de setup executer 1 fois
 
     for (let i = 0; i < nbParticle; i++) {
         particles[i] = new Particle(i);
-        particles[i].init(nb_random(w/2 - containerRadius, w/2 + containerRadius), nb_random(h/2 - containerRadius, h/2 + containerRadius),0, 0);
+        particles[i].init(nb_random(w/2 - containerRadius, w/2), nb_random(h/2 - containerRadius, h/2 + containerRadius),0, 0);
     }
 
 
@@ -39,8 +39,21 @@ function setup() { //fonction de setup executer 1 fois
 }
 
 function loop() {
+    update()
+    update()
+    update()
+    update()
     draw();
+}
 
+function update(){
+    for (let i = 0; i < nbParticle; i++) {
+        particles[i].UForce();
+    }
+
+    for (let i = 0; i < nbParticle; i++) {
+        particles[i].update();
+    }
 }
 
 function draw() {
@@ -51,8 +64,6 @@ function draw() {
     ctx.stroke();
 
     for (let i = 0; i < nbParticle; i++) {
-
-        particles[i].update();
         ctx.beginPath()
         ctx.arc(particles[i].x, particles[i].y, particles[i].r, 0, 2 * 3.1415);
         ctx.stroke();
@@ -91,10 +102,7 @@ function Particle(ind) {
         this.fy = this.m * grv;
         this.fx = 0;
 
-        //const b = 0;
-        //const c = 0.1;
         const mindist = 0.5 //to prevent bug like divided by 0
-        //const distFactor = 0.5;
 
         for (let i = 0; i < nbParticle; i++) {
             if (!(i == this.index)) {
@@ -123,14 +131,17 @@ function Particle(ind) {
         this.sx += this.fx / this.m * dlt;
         this.sy += this.fy / this.m * dlt;
 
-        const maxSpeed = 30
-        if(this.sx > maxSpeed) this.sx = maxSpeed;
-        if(this.sx < -maxSpeed) this.sx = -maxSpeed;
-        if(this.sy > maxSpeed) this.sy = maxSpeed;
-        if(this.sy < -maxSpeed) this.sy = -maxSpeed;
+        const maxSpeed = 500
+        let mag = Math.sqrt(this.sx * this.sx + this.sy * this.sy)
+        if (mag != 0) {
+            this.sx /= mag
+            this.sy /= mag
+            mag = Math.min(maxSpeed, mag)
+            mag *= 0.9999
+            this.sx *= mag
+            this.sy *= mag
 
-        this.sx *= 0.995
-        this.sy *= 0.995
+        }
     }
     this.UPos = function() {
         this.x += this.sx * zoom * dlt;
@@ -141,20 +152,20 @@ function Particle(ind) {
     this.checkBounds = function() {
         if (this.y > h / 2 + containerRadius) {
             this.y = h / 2 + containerRadius;
-            this.sy = -10;
+            this.sy *= -0.9;
             //this.USpeed()
         }
         if (this.y < h / 2 - containerRadius) {
             this.y = h / 2 - containerRadius;
-            this.sy = -this.sy*0.2;
+            this.sy *= -0.9;
         }
         if (this.x > w / 2 + containerRadius) {
             this.x = w / 2 + containerRadius;
-            this.sx = -10;
+            this.sx *= -0.9;
         }
         if (this.x < w / 2 - containerRadius) {
             this.x = w / 2 - containerRadius;
-            this.sx = 10;
+            this.sx *= -0.9;
         }
     }
 
