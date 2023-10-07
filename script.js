@@ -3,7 +3,7 @@
 
 //underscore animation blinking
 let blinkState = 1;
-let i = setInterval(() => {
+let binkInt = setInterval(() => {
     blinkState = (blinkState == 1) ? 0 : 1
     $(".cursorBlinker").css("opacity", blinkState)
 }, 700)
