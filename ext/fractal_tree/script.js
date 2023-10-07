@@ -1,6 +1,5 @@
 //script realise par Tom Demagny, tous droits réserve
 
-console.log("script chargé")
 
 function checkInstance(){
 	var nameClassObjectCanvas = "Fractal-tree" //insert the class's name of canvas elements
@@ -27,7 +26,6 @@ function checkInstance(){
 
 
 function Fractal_tree(theNumberOfcanvasObjectInstance, IDcanvas){ //change the name of the function
-    console.log("new fractal tree canvas");
     this.IntervalFrameTime;
     this.IDcanvas = IDcanvas;
     this.canvas;
@@ -44,20 +42,20 @@ function Fractal_tree(theNumberOfcanvasObjectInstance, IDcanvas){ //change the n
     this.angle1 = 90; //angle vers la droite
     this.angle2 = -0; //angle vers la guauche
     this.sizebegin = 100; //const
-    this.actuPointX = 400;
-    this.actuPointY = 400;
+    this.actuPointX = window.innerWidth/2;
+    this.actuPointY = window.innerHeight/2;
     this.actuAngle = 0 - 90;
 
     this.date = new Date(); //a finir
     this.minutes = this.date.getMinutes();
     this.hours = this.date.getHours()
-    console.log(this.minutes)
-    console.log(this.hours)
 
     this.setup = function(){
         this.canvas = document.getElementById(this.IDcanvas);
         this.ctx = this.canvas.getContext("2d");
-        this.IntervalFrameTime = setInterval(this.frame, 10 , this.theNumberOfcanvasObjectInstance);
+        this.IntervalFrameTime = setInterval(this.frame, 20 , this.theNumberOfcanvasObjectInstance);
+        this.canvas.width = window.innerWidth;
+        this.canvas.height = window.innerHeight;
     }
     
     this.draw = function(){   //fonction de tracage de fractale
@@ -66,8 +64,9 @@ function Fractal_tree(theNumberOfcanvasObjectInstance, IDcanvas){ //change the n
             //this.drawAction = true;
             
             
-            this.ctx.fillStyle = "#555"; //background
+            this.ctx.fillStyle = "rgb(191, 215, 234)"; //background
             this.ctx.fillRect(0,0,this.canvas.width,this.canvas.height);
+            this.ctx.strokeStyle = "rgb(54, 53, 55)"; //background
 
             
                 
@@ -118,8 +117,9 @@ function Fractal_tree(theNumberOfcanvasObjectInstance, IDcanvas){ //change the n
             }
 
             this.t = []
-            this.angle1 += 0.5  //pour faire évoler la fractale 
-            this.angle2 += 1.1
+            this.speed = 0.6
+            this.angle1 += 0.5*this.speed  //pour faire évoler la fractale 
+            this.angle2 += 1.1356*this.speed
             
         }
 

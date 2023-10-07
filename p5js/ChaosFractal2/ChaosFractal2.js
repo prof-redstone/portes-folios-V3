@@ -4,6 +4,10 @@ var mX;
 var mY;
 var selected = -1;
 var size = 100;
+var depth = 6;
+var col1;
+var col2;
+var mode = 2;
 
 var param = [
     [0.4, 0, -200, 0],
@@ -18,6 +22,9 @@ function setup() {
     W = width;
     cenX = W / 2;
     cenY = H / 2;
+    colorMode(RGB);
+    col1 = color(54, 53, 55);
+    col2 = color(191, 215, 234);
 }
 
 function pt(x, y) {
@@ -72,24 +79,38 @@ function pt(x, y) {
 }
 
 function draw() {
-    background("#FFF")
+    background(col2)
     mX = mouseX - W / 2;
     mY = mouseY - H / 2;
     move()
-    for (let j = 6; j >= 0; j--) {
+    if(mode == 1){
+        for (let j = depth; j >= 0; j--) {
+            for (let i = 0; i < (param.length ** j); i++) {
+                plot(i, j)
+            }
+        }
+    }else if(mode == 2){
+        for (let j = 0; j <= depth; j++) {
+            for (let i = 0; i < (param.length ** j); i++) {
+                plot(i, j)
+            }
+        }
+    }else if(mode == 3){
+        j = depth;
         for (let i = 0; i < (param.length ** j); i++) {
             plot(i, j)
         }
     }
+    
 }
 
-function plot(n, e) {
+function plot(n, d) {
     let pt1 = new pt(-size, -size);
     let pt2 = new pt(-size, size);
     let pt3 = new pt(size, size);
     let pt4 = new pt(size, -size);
 
-    for (let i = 0; i < e; i++) {
+    for (let i = 0; i < d; i++) {
         let rep = Math.floor(n / (param.length ** i)) % param.length
         pt1.sh(rep)
         pt2.sh(rep)
@@ -97,9 +118,16 @@ function plot(n, e) {
         pt4.sh(rep)
     }
 
-    fill(e * 20)
-    stroke(e * 20)
+    //fill(d * 30)
+    //stroke(d * 30)
+    colorOfDepth(d)
     quad(pt1.x + cenX, pt1.y + cenY, pt2.x + cenX, pt2.y + cenY, pt3.x + cenX, pt3.y + cenY, pt4.x + cenX, pt4.y + cenY)
+}
+
+function colorOfDepth(d){
+    const col = lerpColor(col1, col2, d/(depth+3));
+    fill(col)
+    stroke(col)
 }
 
 
@@ -141,6 +169,14 @@ function mouseWheel(event) {
         size += 2;
     } else {
         size -= 2;
+    }
+}
+
+function keyPressed() {
+
+    if (keyCode == 32) {//barre espace
+        mode++;
+        if(mode == 4){ mode = 1}
     }
 }
 

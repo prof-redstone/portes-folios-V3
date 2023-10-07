@@ -8,7 +8,8 @@ var PI = 3.14159265
 var ratio = 0.70710 // 1/sqrt(2)
 
 
-var maxStep = 15;
+var maxStep = 16;
+var currentStep = 0;
 
 var point = [] //co des points de la courbe
 
@@ -26,24 +27,30 @@ function setup() { //fonction de setup executer 1 fois
     ctx.lineCap = 'round';
     ctx.strokeStyle = "#000"
 
+    let minsq = Math.min(w,h);
     point = [
-        [w * 1 / 4, h / 2],
-        [w * 3 / 4, h / 2]
+        [w/2 - minsq/3, h / 2 - minsq/5],
+        [w/2 + minsq/3, h / 2 - minsq/5]
     ]
 
-    for (let i = 0; i < maxStep; i++) {
-        loop();
-    }
+    loop();
     draw();
 }
 
 function loop() {
-    ctx.clearRect(0,0,w,h)
+    ctx.fillStyle = "rgb(0, 121, 145)"; //for bg
+    ctx.fillRect(0,0,canvas.width,canvas.height);
+    ctx.fillStyle = "rgb(54, 53, 55)"; 
     nextStep()
+    draw();
+    currentStep++
+    if(currentStep < maxStep){
+        setTimeout(loop, 200);
+    }
 }
 
 function nextStep() {
-    let nextTab = [];
+    var nextTab = [];
     for (let i = 0; i < point.length - 1; i++) {
         nextTab.push(point[i]);
 

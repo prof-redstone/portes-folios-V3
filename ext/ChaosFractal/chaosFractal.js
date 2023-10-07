@@ -27,7 +27,9 @@ function setup() {
 }
 
 function loop() {
-    ctx.clearRect(0, 0, W, H);
+    ctx.fillStyle = "rgb(191, 215, 234)"; //for bg
+    ctx.fillRect(0,0,canvas.width,canvas.height);
+    ctx.fillStyle = "rgb(54, 53, 55)"; //for point
     minX = 0;
     maxX = 0;
     minY = 0;
@@ -111,7 +113,8 @@ function map(x,a,b){
 
 function dot(x, y) {
     ctx.beginPath()
-    ctx.rect(x + W / 2 - cenX, H / 2 - y + cenY, 2, 2)
+    ctx.rect(x + W / 2 - cenX, H / 2 - y + cenY, 2, 2);
+    ctx.closePath()
     ctx.fill()
 }
 

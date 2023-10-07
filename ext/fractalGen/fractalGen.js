@@ -2,8 +2,8 @@ var canvas;
 var ctx;
 var H = 0;
 var W = 0;
-var size = 800;
-var offset = 300;
+var size = window.innerWidth;
+var offsetY = 50;
 var maxStage = 8;
 var mode = 1;
 var angle = 0;
@@ -33,6 +33,7 @@ function setup() {
     H = ctx.canvas.height;
     W = ctx.canvas.width;
     ctx.strokeStyle = "#EEE";
+    ctx.fillStyle = "#111";
     setInterval(loop, 50);
 }
 
@@ -65,8 +66,8 @@ function draw() {
 
         for (let j = 0; j < fsp[stage].length - 1; j++) {
             ctx.beginPath()
-            ctx.moveTo(fsp[stage][j][0] * size, fsp[stage][j][1] * size + offset)
-            ctx.lineTo(fsp[stage][j + 1][0] * size, fsp[stage][j + 1][1] * size + offset)
+            ctx.moveTo(fsp[stage][j][0] * size, fsp[stage][j][1] * size + offsetY)
+            ctx.lineTo(fsp[stage][j + 1][0] * size, fsp[stage][j + 1][1] * size + offsetY)
             ctx.stroke()
         }
     }

@@ -1,3 +1,4 @@
+//NEW VERSION IN P5JS FOLDER
 var canvas;
 var ctx;
 var H;
