@@ -38,7 +38,7 @@ function setup() {
     let size = min(windowWidth, windowHeight);
     createCanvas(windowWidth, windowHeight, WEBGL);
     frameRate(60)
-    pixelDensity(2);
+    pixelDensity(1);
     pos = createVector(4, 5, 4);
     vue = createVector(0, 0, 0);
 }
